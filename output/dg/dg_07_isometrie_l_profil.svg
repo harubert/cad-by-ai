@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="297mm" height="210mm"
+     font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>
+      .construction { stroke: #aaa; stroke-width: 0.15; fill: none; }
+      .result { stroke: #000; stroke-width: 0.5; fill: none; }
+      .result-fill { stroke: #000; stroke-width: 0.5; }
+      .hidden { stroke: #000; stroke-width: 0.4; fill: none; stroke-dasharray: 2,1; }
+      .center { stroke: #d00; stroke-width: 0.2; fill: none; stroke-dasharray: 4,1,1,1; }
+      .dim { stroke: #00a; stroke-width: 0.15; fill: none; }
+      .label { font-size: 3px; fill: #000; }
+      .label-sm { font-size: 2.2px; fill: #444; }
+      .title { font-size: 3.5px; fill: #000; font-weight: bold; }
+      .frame { stroke: #000; stroke-width: 0.5; fill: none; }
+      .titleblock { stroke: #000; stroke-width: 0.3; fill: none; }
+      .axis { stroke: #d00; stroke-width: 0.25; fill: none; stroke-dasharray: 6,1,1,1; }
+      .ground { stroke: #070; stroke-width: 0.3; fill: none; }
+      .shadow-fill { fill: #ccc; stroke: none; opacity: 0.5; }
+      .shadow-line { stroke: #555; stroke-width: 0.4; fill: none; }
+      .blue { stroke: #0055cc; stroke-width: 0.4; fill: none; }
+      .red { stroke: #cc0000; stroke-width: 0.4; fill: none; }
+      .green { stroke: #007700; stroke-width: 0.4; fill: none; }
+    </style>
+  </defs>
+  <!-- Drawing frame: left 20mm, others 10mm -->
+  <rect x="20" y="10" width="267" height="190" class="frame"/>
+  <!-- Title block -->
+  <rect x="197" y="185" width="90" height="15" class="titleblock"/>
+  <line x1="197" y1="192" x2="287" y2="192" class="titleblock"/>
+  <line x1="242" y1="185" x2="242" y2="200" class="titleblock"/>
+  <text x="199" y="190" class="label-sm">CAD-AI / DG-07</text>
+  <text x="244" y="190" class="label-sm">Isometrie L-Profil</text>
+  <text x="199" y="198" class="label-sm">Darstellende Geometrie</text>
+  <text x="244" y="198" class="label-sm">A4 quer | 1:1</text>
+<line x1="148.00" y1="140.00" x2="210.35" y2="104.00" class="axis"/>
+<text x="212.35" y="105.00" class="label" fill="#d00">x</text>
+<line x1="148.00" y1="140.00" x2="85.65" y2="104.00" class="axis"/>
+<text x="87.65" y="105.00" class="label" fill="#d00">y</text>
+<line x1="148.00" y1="140.00" x2="148.00" y2="68.00" class="axis"/>
+<text x="150.00" y="69.00" class="label" fill="#d00">z</text>
+<line x1="148.00" y1="140.00" x2="199.96" y2="110.00" class="result"/>
+<line x1="199.96" y1="110.00" x2="199.96" y2="98.00" class="result"/>
+<line x1="199.96" y1="98.00" x2="158.39" y2="122.00" class="result"/>
+<line x1="158.39" y1="122.00" x2="158.39" y2="74.00" class="result"/>
+<line x1="158.39" y1="74.00" x2="148.00" y2="80.00" class="result"/>
+<line x1="148.00" y1="80.00" x2="148.00" y2="128.00" class="result"/>
+<line x1="148.00" y1="128.00" x2="148.00" y2="140.00" class="result"/>
+<line x1="199.96" y1="110.00" x2="179.18" y2="98.00" class="result"/>
+<line x1="179.18" y1="98.00" x2="179.18" y2="86.00" class="result"/>
+<line x1="199.96" y1="98.00" x2="179.18" y2="86.00" class="result"/>
+<line x1="179.18" y1="86.00" x2="137.61" y2="110.00" class="result"/>
+<line x1="158.39" y1="122.00" x2="137.61" y2="110.00" class="result"/>
+<line x1="137.61" y1="110.00" x2="137.61" y2="62.00" class="result"/>
+<line x1="158.39" y1="74.00" x2="137.61" y2="62.00" class="result"/>
+<line x1="148.00" y1="80.00" x2="127.22" y2="68.00" class="result"/>
+<line x1="137.61" y1="62.00" x2="127.22" y2="68.00" class="result"/>
+<line x1="179.18" y1="98.00" x2="127.22" y2="128.00" class="result"/>
+<line x1="127.22" y1="128.00" x2="148.00" y2="140.00" class="result"/>
+<line x1="127.22" y1="128.00" x2="127.22" y2="116.00" class="result"/>
+<line x1="127.22" y1="116.00" x2="127.22" y2="68.00" class="result"/>
+<line x1="148.00" y1="128.00" x2="127.22" y2="116.00" class="hidden"/>
+<line x1="127.22" y1="116.00" x2="137.61" y2="110.00" class="hidden"/>
+<line x1="148.00" y1="146.00" x2="199.96" y2="116.00" class="dim"/>
+<text x="173.98" y="134.00" class="label-sm" fill="#00a">50</text>
+<line x1="142.80" y1="143.00" x2="142.80" y2="83.00" class="dim"/>
+<text x="134.80" y="113.00" class="label-sm" fill="#00a">50</text>
+<text x="30" y="20" class="title">Aufgabe 7: Isometrische Darstellung – L-Profil</text>
+<text x="30" y="25" class="label-sm">Isometrie (alle Achsen 1:1, 120° zueinander)</text>
+<text x="30" y="29" class="label-sm">Basis: 50×20×10, Steg: 10×20×40</text>
+</svg>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>KI im Geometrieunterricht — CAD by AI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; color: #222; }
+
+  /* Header */
+  .hero { background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+           color: white; padding: 3em 2em 2em; text-align: center; }
+  .hero h1 { font-size: 2.4em; margin-bottom: 0.3em; }
+  .hero .subtitle { font-size: 1.2em; opacity: 0.85; }
+  .hero .meta { margin-top: 1em; font-size: 0.9em; opacity: 0.6; }
+
+  /* Navigation */
+  .nav { background: #283593; padding: 0.5em 2em; display: flex; gap: 1.5em; flex-wrap: wrap; justify-content: center; }
+  .nav a { color: #bbdefb; text-decoration: none; font-size: 0.9em; padding: 0.3em 0.8em; border-radius: 4px; }
+  .nav a:hover { background: rgba(255,255,255,0.15); color: white; }
+
+  /* Content */
+  .content { max-width: 1200px; margin: 2em auto; padding: 0 1.5em; }
+
+  /* Section */
+  .section { margin-bottom: 3em; }
+  .section h2 { font-size: 1.6em; color: #1a237e; margin-bottom: 0.8em;
+                border-left: 4px solid #3949ab; padding-left: 0.5em; }
+
+  /* Card Grid */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5em; }
+  .card { background: white; border-radius: 10px; overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+  .card a { text-decoration: none; color: inherit; display: block; }
+  .card-img { height: 180px; overflow: hidden; background: #e8eaf6; display: flex;
+              align-items: center; justify-content: center; }
+  .card-img img { width: 100%; height: 100%; object-fit: contain; padding: 10px; background: white; }
+  .card-body { padding: 1em; }
+  .card-body h3 { font-size: 1.1em; margin-bottom: 0.3em; color: #1a237e; }
+  .card-body p { font-size: 0.85em; color: #555; line-height: 1.5; }
+  .card-tag { display: inline-block; font-size: 0.7em; padding: 0.2em 0.5em; border-radius: 3px;
+              margin-top: 0.5em; margin-right: 0.3em; }
+  .tag-svg { background: #e3f2fd; color: #1565c0; }
+  .tag-stl { background: #e8f5e9; color: #2e7d32; }
+  .tag-html { background: #fff3e0; color: #e65100; }
+  .tag-cad { background: #f3e5f5; color: #7b1fa2; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1em; margin: 1.5em 0; }
+  .stat { background: white; border-radius: 8px; padding: 1.2em; text-align: center;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .stat .number { font-size: 2em; font-weight: bold; color: #1a237e; }
+  .stat .label { font-size: 0.8em; color: #777; margin-top: 0.3em; }
+
+  /* Footer */
+  .footer { background: #263238; color: #90a4ae; padding: 2em; text-align: center; font-size: 0.85em; }
+  .footer a { color: #80cbc4; }
+
+  /* Lightbox */
+  .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+              background:rgba(255,255,255,0.97); z-index:1000; cursor:pointer;
+              align-items:center; justify-content:center; }
+  .lightbox.active { display:flex; }
+  .lightbox img { max-width:95vw; max-height:95vh; background:white; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>KI im Geometrieunterricht</h1>
+  <div class="subtitle">CAD by AI — Konstruieren mit künstlicher Intelligenz</div>
+  <div class="meta">Graz, 9. April 2026 — PH-Workshop: Darstellende Geometrie &amp; Geometrisches Zeichnen</div>
+</div>
+
+<div class="nav">
+  <a href="#hauptprojekt">Hauptprojekt</a>
+  <a href="#3ddruck">3D-Druck</a>
+  <a href="#risse">Risse &amp; Projektionen</a>
+  <a href="#aufgaben">GZ &amp; DG Aufgaben</a>
+  <a href="#tools">Tool-Vergleich</a>
+  <a href="#doku">Dokumentation</a>
+</div>
+
+<div class="content">
+
+  <!-- Statistik -->
+  <div class="stats">
+    <div class="stat"><div class="number">35+</div><div class="label">Konstruktionsschritte</div></div>
+    <div class="stat"><div class="number">20</div><div class="label">GZ/DG Aufgaben</div></div>
+    <div class="stat"><div class="number">3</div><div class="label">3D-Drucke</div></div>
+    <div class="stat"><div class="number">4</div><div class="label">CAD-Tools</div></div>
+    <div class="stat"><div class="number">47%</div><div class="label">Auf Anhieb korrekt</div></div>
+    <div class="stat"><div class="number">17</div><div class="label">Rückschritte</div></div>
+  </div>
+
+  <!-- Hauptprojekt: Alu-Profil -->
+  <div class="section" id="hauptprojekt">
+    <h2>Hauptprojekt: Alu-Profil 40 × 40</h2>
+    <div class="cards">
+
+      <div class="card"><a href="aufgabe01_overlay.svg">
+        <div class="card-img"><img src="aufgabe01_overlay.svg"></div>
+        <div class="card-body">
+          <h3>Profil mit Vorlage</h3>
+          <p>Unsere Konstruktion (rot) überlagert mit dem Datenblatt des Originalprofils.</p>
+          <span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe01_Final-Schnitt.svg">
+        <div class="card-img"><img src="aufgabe01_Final-Schnitt.svg"></div>
+        <div class="card-body">
+          <h3>Fertiger Schnitt</h3>
+          <p>Profilquerschnitt mit 45°-Schraffur. Alle Rundungen (R4.5, R2, R1, R0.5), Kreisbögen, Eckaussparungen.</p>
+          <span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe01_path.svg">
+        <div class="card-img"><img src="aufgabe01_path.svg"></div>
+        <div class="card-body">
+          <h3>Reine Kontur</h3>
+          <p>Profilquerschnitt ohne Schraffur — die geometrische Basis für alle weiteren Exporte.</p>
+          <span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe01_path_formal.svg">
+        <div class="card-img"><img src="aufgabe01_path_formal.svg"></div>
+        <div class="card-body">
+          <h3>Technische Zeichnung A4</h3>
+          <p>Normgerechte Bemaßung, Schriftfeld nach EN ISO 7200, Schnittdarstellung 2:1 + 1:1.</p>
+          <span class="card-tag tag-svg">SVG</span><span class="card-tag tag-html">A4</span>
+        </div>
+      </a></div>
+
+    </div>
+  </div>
+
+  <!-- 3D-Druck -->
+  <div class="section" id="3ddruck">
+    <h2>3D-Druck (Bambu Lab X1 Carbon)</h2>
+    <div class="cards">
+
+      <div class="card"><a href="donePrint.png">
+        <div class="card-img"><img src="donePrint.png"></div>
+        <div class="card-body">
+          <h3>Profil 100mm</h3>
+          <p>Erfolgreich gedrucktes Alu-Profil. Alle Rundungen und Kreisbögen korrekt.</p>
+          <span class="card-tag tag-stl">STL</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="erfolgtFuß.png">
+        <div class="card-img"><img src="erfolgtFuß.png"></div>
+        <div class="card-body">
+          <h3>TPU-Fußkappe</h3>
+          <p>Flexible Abschlusskappe (TPU 95A), 5mm hoch, 46×46mm. Verzahnung passt exakt ins Profil.</p>
+          <span class="card-tag tag-stl">STL</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe05_verbinder_grundriss.svg">
+        <div class="card-img"><img src="aufgabe05_verbinder_grundriss.svg"></div>
+        <div class="card-body">
+          <h3>TPU-Verbindungsstück</h3>
+          <p>Flexibler Verbinder (40mm hoch), verbindet zwei Profile. Profil-Durchbruch ohne Bohrung/Pockets.</p>
+          <span class="card-tag tag-stl">STL</span><span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card">
+        <div class="card-img" style="background:#ffebee;"><img src="steroids.png"></div>
+        <div class="card-body">
+          <h3>FAIL: „Aluminium on Steroids"</h3>
+          <p>Bögen invertiert beim STL-Export — Y-Achsen-Inversion vergessen. Sweep-Flag korrigiert → Erfolg.</p>
+          <span class="card-tag tag-stl">FAIL</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Risse & Projektionen -->
+  <div class="section" id="risse">
+    <h2>Risse &amp; Projektionen</h2>
+    <div class="cards">
+
+      <div class="card"><a href="aufgabe03_schraegriss.svg">
+        <div class="card-img"><img src="aufgabe03_schraegriss.svg"></div>
+        <div class="card-body">
+          <h3>Schrägriss (manuell)</h3>
+          <p>Kavalierprojektion 30°. Manuell Kante für Kante aufgebaut — Tangentenpunkte, Silhouetten.</p>
+          <span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe03_schraegriss_cadquery_v2.svg">
+        <div class="card-img"><img src="aufgabe03_schraegriss_cadquery_v2.svg"></div>
+        <div class="card-body">
+          <h3>Schrägriss (CadQuery HLR)</h3>
+          <p>Automatische Hidden Line Removal mit CadQuery/OpenCASCADE. SVG-Export noch problematisch.</p>
+          <span class="card-tag tag-cad">CadQuery</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe03_dreitafel.svg">
+        <div class="card-img"><img src="aufgabe03_dreitafel.svg"></div>
+        <div class="card-body">
+          <h3>Dreitafelprojektion</h3>
+          <p>Aufriss (Schnitt), Grundriss, Kreuzriss. Rissachsen, Ordner, 45°-Bögen, verdeckte Kanten.</p>
+          <span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe04_pyramide_schraegriss.svg">
+        <div class="card-img"><img src="aufgabe04_pyramide_schraegriss.svg"></div>
+        <div class="card-body">
+          <h3>Pyramide Schrägriss</h3>
+          <p>Quadratische Pyramide 50×50, h=70. Kavalierprojektion mit verdeckten Kanten.</p>
+          <span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe04_pyramide_dreitafel.svg">
+        <div class="card-img"><img src="aufgabe04_pyramide_dreitafel.svg"></div>
+        <div class="card-body">
+          <h3>Pyramide Dreitafel</h3>
+          <p>Aufriss, Grundriss, Kreuzriss mit Ordnern und 45°-Übertragung.</p>
+          <span class="card-tag tag-svg">SVG</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="aufgabe02_formal_abschlussTPU.svg">
+        <div class="card-img"><img src="aufgabe02_formal_abschlussTPU.svg"></div>
+        <div class="card-body">
+          <h3>TPU-Kappe Zeichnung</h3>
+          <p>A4-Zeichnung der TPU-Abschlusskappe. Draufsicht Basis + Schnitt Verzahnung.</p>
+          <span class="card-tag tag-svg">SVG</span><span class="card-tag tag-html">A4</span>
+        </div>
+      </a></div>
+
+    </div>
+  </div>
+
+  <!-- GZ & DG Aufgaben -->
+  <div class="section" id="aufgaben">
+    <h2>Aufgabensammlungen</h2>
+    <div class="cards">
+
+      <div class="card"><a href="gz/gz_zusammenfassung.html">
+        <div class="card-img"><img src="gz/aufgabe_01_dreitafelprojektion.svg"></div>
+        <div class="card-body">
+          <h3>GZ — 10 Aufgaben (Shapely)</h3>
+          <p>Geometrisches Zeichnen Sek I. Quader, Pyramide, Abwicklungen, Durchdringung, Schrägriss.</p>
+          <span class="card-tag tag-html">HTML</span><span class="card-tag tag-svg">10 SVGs</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="gz_cadquery/gz_cadquery_vergleich.html">
+        <div class="card-img"><img src="gz_cadquery/aufgabe_02_schraegriss_quader.svg"></div>
+        <div class="card-body">
+          <h3>GZ — CadQuery-Vergleich</h3>
+          <p>Dieselben 10 Aufgaben mit CadQuery + HLR. Automatische Sichtbarkeit, echte 3D-Projektion.</p>
+          <span class="card-tag tag-cad">CadQuery</span><span class="card-tag tag-html">Vergleich</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="dg/dg_zusammenfassung.html">
+        <div class="card-img"><img src="dg/dg_03_ellipse_zylinder.svg"></div>
+        <div class="card-body">
+          <h3>DG — 10 Aufgaben</h3>
+          <p>Darstellende Geometrie Oberstufe. Kegelschnitte, Schatten, Durchdringung, Perspektive, Torus.</p>
+          <span class="card-tag tag-html">HTML</span><span class="card-tag tag-svg">10 SVGs</span>
+        </div>
+      </a></div>
+
+    </div>
+  </div>
+
+  <!-- Tool-Vergleich -->
+  <div class="section" id="tools">
+    <h2>Tool-Vergleich</h2>
+    <div class="cards">
+
+      <div class="card"><a href="aufgabe06/aufgabe06_vergleich.html">
+        <div class="card-img"><img src="aufgabe06/aufgabe06_cadquery_parametric.svg"></div>
+        <div class="card-body">
+          <h3>CadQuery vs build123d vs OpenSCAD</h3>
+          <p>Dasselbe Profil mit drei verschiedenen CAD-Tools. SVG-Import + parametrisch.</p>
+          <span class="card-tag tag-cad">3 Tools</span><span class="card-tag tag-html">Vergleich</span>
+        </div>
+      </a></div>
+
+    </div>
+  </div>
+
+  <!-- Dokumentation -->
+  <div class="section" id="doku">
+    <h2>Dokumentation &amp; Protokolle</h2>
+    <div class="cards">
+
+      <div class="card"><a href="konstruktionsdoku.html">
+        <div class="card-img" style="background:#f3e5f5; padding:1.5em;">
+          <div style="font-size:3em; text-align:center;">📋</div>
+          <div style="text-align:center; margin-top:0.5em; font-size:0.9em; color:#7b1fa2;">35+ Schritte dokumentiert</div>
+        </div>
+        <div class="card-body">
+          <h3>Konstruktionsprotokoll</h3>
+          <p>Alle Schritte, Fehlversuche, Korrekturen. Bewertung von Mensch und KI. Bilder bei jedem Schritt.</p>
+          <span class="card-tag tag-html">HTML</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="schraegriss_protokoll.html">
+        <div class="card-img" style="background:#e8f5e9; padding:1.5em;">
+          <div style="font-size:3em; text-align:center;">📐</div>
+          <div style="text-align:center; margin-top:0.5em; font-size:0.9em; color:#2e7d32;">Manuell vs. CadQuery HLR</div>
+        </div>
+        <div class="card-body">
+          <h3>Schrägriss-Protokoll</h3>
+          <p>Der Kampf um den Schrägriss: manuell gescheitert, CadQuery als Lösung.</p>
+          <span class="card-tag tag-html">HTML</span>
+        </div>
+      </a></div>
+
+      <div class="card"><a href="praesentation_notizen.html">
+        <div class="card-img" style="background:#fff3e0; padding:1.5em;">
+          <div style="font-size:3em; text-align:center;">🎯</div>
+          <div style="text-align:center; margin-top:0.5em; font-size:0.9em; color:#e65100;">Kernkompetenzen der Zukunft</div>
+        </div>
+        <div class="card-body">
+          <h3>Präsentationsnotizen</h3>
+          <p>Zusammenfassung für das Referat. Tool-Vergleich, Statistik, Erkenntnisse, Fazit.</p>
+          <span class="card-tag tag-html">HTML</span>
+        </div>
+      </a></div>
+
+      <div class="card">
+        <div class="card-img" style="background:#e3f2fd; padding:1.5em;">
+          <div style="font-size:3em; text-align:center;">📁</div>
+          <div style="text-align:center; margin-top:0.5em; font-size:0.9em; color:#1565c0;">Schritt-für-Schritt SVGs</div>
+        </div>
+        <div class="card-body">
+          <h3>Konstruktionsschritte</h3>
+          <p>Einzelne SVGs für jeden Konstruktionsschritt inkl. FAIL-Varianten und Overlays.</p>
+          <span class="card-tag tag-svg">24+ SVGs</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Ausgangslage -->
+  <div class="section">
+    <h2>Ausgangslage</h2>
+    <div class="cards">
+      <div class="card"><a href="Ausgangslage.png">
+        <div class="card-img"><img src="Ausgangslage.png"></div>
+        <div class="card-body">
+          <h3>Reichelt Produktseite</h3>
+          <p>Aluminiumprofil 40×40 L I-Typ Nut 8, 500mm. Art.Nr. 60800. Die Vorlage für alles.</p>
+        </div>
+      </a></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Erstellt mit <strong>Claude Code</strong> (Anthropic) im Dialog mit einem Menschen.</p>
+  <p>Tools: Python, Shapely, CadQuery, build123d, SolidPython, trimesh, OpenCV</p>
+  <p>Graz, April 2026 — <a href="https://www.reichelt.at/at/de/shop/produkt/aluminiumprofil_40x40_l_i-typ_nut_8_leicht_500mm-377442">Originalprofil (Reichelt)</a></p>
+</div>
+
+<script>
+// Lightbox
+document.addEventListener('DOMContentLoaded', function() {
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  document.body.appendChild(lb);
+  lb.addEventListener('click', function() { lb.classList.remove('active'); lb.innerHTML = ''; });
+
+  document.querySelectorAll('.card-img img').forEach(function(el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', function(e) {
+      e.preventDefault(); e.stopPropagation();
+      var img = document.createElement('img');
+      img.src = el.src;
+      lb.innerHTML = ''; lb.appendChild(img); lb.classList.add('active');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

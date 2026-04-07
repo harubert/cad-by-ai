@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Präsentationsnotizen &mdash; KI im Geometrieunterricht</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: 2em auto; padding: 0 1em; line-height: 1.7; }
+  h1 { border-bottom: 3px solid #2196F3; }
+  h2 { color: #1565C0; margin-top: 2em; }
+  .example { background: #f5f5f5; border-left: 4px solid #2196F3; padding: 1em; margin: 1em 0; border-radius: 4px; }
+  .tool { background: #E8F5E9; border-left: 4px solid #43A047; padding: 1em; margin: 1em 0; border-radius: 4px; }
+  .insight { background: #FFF3E0; border-left: 4px solid #FF9800; padding: 1em; margin: 1em 0; border-radius: 4px; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<h1>KI im Geometrieunterricht &mdash; Präsentationsnotizen</h1>
+<p>Graz, 9. April 2026</p>
+
+<h2>1. Verschiedene KI-Tools für verschiedene Aufgaben</h2>
+
+<div class="example">
+<h3>Beispiel: Gemini &mdash; Von Handskizze zum Produkt-Rendering</h3>
+<p>Eine miserable Handskizze einer Urne wurde an Gemini gegeben mit dem Prompt
+&bdquo;Erstelle ein realistisches Foto dieser Urne&ldquo;. Das Ergebnis: ein fotorealistisches
+Rendering in polierter Bronze und Schiefer auf einem Holzsockel mit Gravur.</p>
+<p><strong>Stärke:</strong> Visuelles Verständnis, kreative Interpretation, fotorealistische Ausgabe.</p>
+<p><strong>Geometrie-Relevanz:</strong> Rotationskörper erkennen, Proportionen beibehalten,
+Materialien und Beleuchtung simulieren.</p>
+</div>
+
+<div class="example">
+<h3>Beispiel: Claude Code &mdash; Vom Gespräch zur technischen Zeichnung</h3>
+<p>32+ Konstruktionsschritte im Dialog: Quadrat → Rundungen → T-Nuten → Kreisbögen →
+Schraffur → Bemaßung → 3D-Druck → Schrägriss. Jeder Schritt durch natürliche Sprache gesteuert.</p>
+<p><strong>Stärke:</strong> Präzise geometrische Konstruktion, parametrisches Arbeiten, Code-Generierung.</p>
+<p><strong>Schwäche:</strong> Sichtbarkeitsanalyse bei komplexen 3D-Projektionen.</p>
+</div>
+
+<h2>2. Kernkompetenzen der Zukunft</h2>
+
+<table>
+<tr><th>Kompetenz</th><th>Warum bei KI wichtiger, nicht weniger?</th><th>Beispiel aus der Session</th></tr>
+<tr><td>Präzise Fachsprache</td><td>KI versteht &bdquo;diese Ecken&ldquo; nicht &mdash; man muss sagen welche</td><td>R2 an Eintrittskante vs. Nutboden (5 Versuche)</td></tr>
+<tr><td>Geometrisches Grundverständnis</td><td>Man muss erkennen, DASS etwas falsch ist</td><td>Sichtbarkeit im Schrägriss: Mensch sieht Fehler sofort, KI nicht</td></tr>
+<tr><td>Konstruktionsplanung</td><td>Komplexe Formen müssen in Einzelschritte zerlegt werden</td><td>Punkt-für-Punkt statt &bdquo;mach eine T-Nut&ldquo;</td></tr>
+<tr><td>Werkzeugkenntnis</td><td>Das richtige Tool für die Aufgabe wählen</td><td>Shapely für 2D OK, für Schrägriss gescheitert → CadQuery</td></tr>
+<tr><td>Verifikation</td><td>KI-Output kritisch prüfen, nicht blind vertrauen</td><td>43% Erfolgsrate beim ersten Versuch</td></tr>
+<tr><td>Iteratives Verfeinern</td><td>Parameter tweaken bis es passt</td><td>Dreiecks-Höhe h: 15→10→6 für den Kreisbogen</td></tr>
+</table>
+
+<h2>3. Was KI gut kann</h2>
+<ul>
+<li>Einfache Grundformen (Quadrat, Kreis, Rechteck) &mdash; sofort korrekt</li>
+<li>Symmetrie-Operationen (&bdquo;auf allen 4 Seiten spiegeln&ldquo;)</li>
+<li>Parametrische Änderungen (&bdquo;mach den Radius 0.5mm kleiner&ldquo;)</li>
+<li>Export in verschiedene Formate (SVG, STL, PDF)</li>
+<li>Automatische Berechnung (Tangentenpunkte, Schnittpunkte, Bögen)</li>
+<li>3D-Druck-Dateien direkt aus dem Gespräch</li>
+</ul>
+
+<h2>4. Was KI (noch) nicht kann</h2>
+<ul>
+<li>Sichtbarkeitsanalyse bei komplexen 3D-Projektionen</li>
+<li>SVG-Arc sweep-flag korrekt bestimmen (kombinatorisches Problem)</li>
+<li>Selektive Operationen (&bdquo;nur diese eine Ecke verrunden&ldquo;)</li>
+<li>&bdquo;Schöne&ldquo; Zeichnungen ohne viele Korrekturrunden</li>
+<li>Normgerechte Bemaßung ohne Anleitung</li>
+</ul>
+
+<h2>5. Statistik der Session</h2>
+<table>
+<tr><th>Metrik</th><th>Wert</th></tr>
+<tr><td>Gesamte Konstruktionsschritte</td><td>35+</td></tr>
+<tr><td>Auf Anhieb korrekt</td><td>~47%</td></tr>
+<tr><td>Rückschritte / Korrekturen</td><td>~17</td></tr>
+<tr><td>Verschiedene Werkzeuge</td><td>Shapely, SVG, CadQuery, trimesh, OpenCV</td></tr>
+<tr><td>3D-Drucke erzeugt</td><td>3 (Profil, TPU-Fuß, TPU-Verbinder)</td></tr>
+<tr><td>Technische Zeichnungen</td><td>5+ (Schnitt, Formal, Dreitafel, Schrägriss, Pyramide)</td></tr>
+<tr><td>GZ/DG Aufgaben gelöst</td><td>20 (10+10)</td></tr>
+</table>
+
+<h2>6. Tool-Vergleich</h2>
+
+<div class="tool">
+<h3>Gemini (Google)</h3>
+<p>Stärke: Bild→Bild, kreative Interpretation, fotorealistisch.
+Schwäche: Keine präzisen Maße, keine technischen Zeichnungen.</p>
+</div>
+
+<div class="tool">
+<h3>Claude Code (Anthropic)</h3>
+<p>Stärke: Code-basierte Konstruktion, parametrisch, exportfähig (SVG/STL/PDF).
+Schwäche: Kein visuelles Verständnis des eigenen Outputs (sieht nicht, was falsch aussieht).</p>
+</div>
+
+<div class="tool">
+<h3>Kombination: KI + CadQuery</h3>
+<p>Stärke: Echte 3D-CAD-Operationen, automatische HLR, STEP-Export.
+Die KI steuert das CAD-Tool durch Code &mdash; beste Kombination für präzise Konstruktion.</p>
+</div>
+
+<h2>7. Fazit für den Unterricht</h2>
+
+<div class="insight">
+<p><strong>KI ersetzt nicht das geometrische Denken &mdash; sie verstärkt es.</strong></p>
+<p>Wer die Geometrie versteht, kann KI als mächtiges Werkzeug nutzen.
+Wer sie nicht versteht, kann die Fehler der KI nicht erkennen.</p>
+<p>Die Rolle des Lehrers verschiebt sich: von &bdquo;wie zeichne ich das?&ldquo;
+zu &bdquo;wie beschreibe ich das so, dass die KI es richtig macht?&ldquo;
+&mdash; und das erfordert <em>tieferes</em> Verständnis, nicht weniger.</p>
+</div>
+
+</body>
+</html>

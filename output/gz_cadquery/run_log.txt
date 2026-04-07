@@ -1,0 +1,40 @@
+============================================================
+GZ CadQuery HLR - Starting all tasks
+============================================================
+Task 1: Dreitafelprojektion Quader 80x50x30
+  -> aufgabe_01_dreitafelprojektion.svg
+  OK: aufgabe_01_dreitafelprojektion.svg
+Task 2: Schraegriss Quader 80x50x30
+  -> aufgabe_02_schraegriss_quader.svg
+  OK: aufgabe_02_schraegriss_quader.svg
+Task 3: Normalriss Pyramide 60x60 h=80
+  -> aufgabe_03_normalriss_pyramide.svg
+  OK: aufgabe_03_normalriss_pyramide.svg
+Task 4: Abwicklung Wuerfel 40mm (2D - Shapely-Aufgabe)
+  -> aufgabe_04_abwicklung_wuerfel.svg
+  OK: aufgabe_04_abwicklung_wuerfel.svg
+Task 5: Abwicklung Zylinder (2D)
+  -> aufgabe_05_abwicklung_zylinder.svg
+  OK: aufgabe_05_abwicklung_zylinder.svg
+Task 6: Parallelprojektion Prisma
+  -> aufgabe_06_parallelprojektion_prisma.svg
+  OK: aufgabe_06_parallelprojektion_prisma.svg
+Task 7: Durchdringung Quader-Quader
+  -> aufgabe_07_durchdringung.svg
+  OK: aufgabe_07_durchdringung.svg
+Task 8: Ebenenschnitt Wuerfel 40mm
+  -> aufgabe_08_ebenenschnitt.svg
+  OK: aufgabe_08_ebenenschnitt.svg
+Task 9: Kreis im Schraegriss
+  -> aufgabe_09_kreis_schraegriss.svg
+  OK: aufgabe_09_kreis_schraegriss.svg
+Task 10: Zusammengesetzter Koerper
+  -> aufgabe_10_zusammengesetzter_koerper.svg
+  OK: aufgabe_10_zusammengesetzter_koerper.svg
+
+============================================================
+Generating comparison HTML
+============================================================
+HTML: e:\2026_GoogleDrive\00 Arbeit\01 PH\Veranstaltungen\2026_04_09 Graz KI im Geometrieunterricht\CAD_by_AI\output\gz_cadquery\gz_cadquery_vergleich.html
+
+DONE.

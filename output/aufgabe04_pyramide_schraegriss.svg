@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="1190" height="842">
+  <rect x="0" y="0" width="297" height="210" fill="white" stroke="none"/>
+<rect x="20" y="10" width="267" height="190" fill="none" stroke="black" stroke-width="0.5"/>
+
+  
+<rect x="107" y="172" width="180" height="28" fill="white" stroke="black" stroke-width="0.35"/>
+<line x1="107" y1="182" x2="287" y2="182" stroke="black" stroke-width="0.2"/>
+<line x1="157" y1="172" x2="157" y2="182" stroke="black" stroke-width="0.2"/>
+<line x1="207" y1="172" x2="207" y2="200" stroke="black" stroke-width="0.2"/>
+<line x1="247" y1="172" x2="247" y2="182" stroke="black" stroke-width="0.2"/>
+<text x="109" y="175.5" font-size="2.5" font-family="sans-serif" fill="#666">Erstellt</text>
+<text x="109" y="180" font-size="3" font-family="sans-serif" fill="black">Claude Code (KI)</text>
+<text x="159" y="175.5" font-size="2.5" font-family="sans-serif" fill="#666">Geprüft</text>
+<text x="159" y="180" font-size="3" font-family="sans-serif" fill="black">Mensch</text>
+<text x="209" y="175.5" font-size="2.5" font-family="sans-serif" fill="#666">Maßstab</text>
+<text x="209" y="180" font-size="3.5" font-family="sans-serif" fill="black" font-weight="bold">1:1</text>
+<text x="249" y="175.5" font-size="2.5" font-family="sans-serif" fill="#666">Datum</text>
+<text x="249" y="180" font-size="3" font-family="sans-serif" fill="black">2026-04-01</text>
+<text x="109" y="187" font-size="2.5" font-family="sans-serif" fill="#666">Benennung</text>
+<text x="109" y="194" font-size="4.5" font-family="sans-serif" fill="black" font-weight="bold">Pyramide 50x50, h=70 - Schrägriss</text>
+<text x="209" y="187" font-size="2.5" font-family="sans-serif" fill="#666">Zeichnungs-Nr.</text>
+<text x="209" y="194" font-size="4" font-family="sans-serif" fill="black" font-weight="bold">CAD-AI-005</text>
+
+  <g transform="translate(140.2,96.4) scale(1.0,1.0)">
+    <!-- Centerlines -->
+    <line x1="0.000" y1="-0.000" x2="0.000" y2="-70.000" stroke="#C00" stroke-width="0.05" stroke-dasharray="2,0.4,0.3,0.4"/>
+<line x1="0.000" y1="-0.000" x2="0.000" y2="-0.000" stroke="#C00" stroke-width="0.05" stroke-dasharray="2,0.4,0.3,0.4"/>
+<line x1="-33.839" y1="8.839" x2="33.839" y2="-8.839" stroke="#C00" stroke-width="0.05" stroke-dasharray="2,0.4,0.3,0.4"/>
+<line x1="16.161" y1="8.839" x2="-16.161" y2="-8.839" stroke="#C00" stroke-width="0.05" stroke-dasharray="2,0.4,0.3,0.4"/>
+
+    <!-- Hidden edges -->
+    <line x1="33.839" y1="-8.839" x2="-16.161" y2="-8.839" stroke="black" stroke-width="0.1" stroke-dasharray="1.5,0.8"/>
+<line x1="-16.161" y1="-8.839" x2="-33.839" y2="8.839" stroke="black" stroke-width="0.1" stroke-dasharray="1.5,0.8"/>
+<line x1="-16.161" y1="-8.839" x2="0.000" y2="-70.000" stroke="black" stroke-width="0.1" stroke-dasharray="1.5,0.8"/>
+
+    <!-- Visible edges -->
+    <line x1="-33.839" y1="8.839" x2="16.161" y2="8.839" stroke="black" stroke-width="0.25"/>
+<line x1="16.161" y1="8.839" x2="33.839" y2="-8.839" stroke="black" stroke-width="0.25"/>
+<line x1="-33.839" y1="8.839" x2="0.000" y2="-70.000" stroke="black" stroke-width="0.25"/>
+<line x1="16.161" y1="8.839" x2="0.000" y2="-70.000" stroke="black" stroke-width="0.25"/>
+<line x1="33.839" y1="-8.839" x2="0.000" y2="-70.000" stroke="black" stroke-width="0.25"/>
+
+  </g>
+</svg>

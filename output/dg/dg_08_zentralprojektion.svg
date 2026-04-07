@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="297mm" height="210mm"
+     font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>
+      .construction { stroke: #aaa; stroke-width: 0.15; fill: none; }
+      .result { stroke: #000; stroke-width: 0.5; fill: none; }
+      .result-fill { stroke: #000; stroke-width: 0.5; }
+      .hidden { stroke: #000; stroke-width: 0.4; fill: none; stroke-dasharray: 2,1; }
+      .center { stroke: #d00; stroke-width: 0.2; fill: none; stroke-dasharray: 4,1,1,1; }
+      .dim { stroke: #00a; stroke-width: 0.15; fill: none; }
+      .label { font-size: 3px; fill: #000; }
+      .label-sm { font-size: 2.2px; fill: #444; }
+      .title { font-size: 3.5px; fill: #000; font-weight: bold; }
+      .frame { stroke: #000; stroke-width: 0.5; fill: none; }
+      .titleblock { stroke: #000; stroke-width: 0.3; fill: none; }
+      .axis { stroke: #d00; stroke-width: 0.25; fill: none; stroke-dasharray: 6,1,1,1; }
+      .ground { stroke: #070; stroke-width: 0.3; fill: none; }
+      .shadow-fill { fill: #ccc; stroke: none; opacity: 0.5; }
+      .shadow-line { stroke: #555; stroke-width: 0.4; fill: none; }
+      .blue { stroke: #0055cc; stroke-width: 0.4; fill: none; }
+      .red { stroke: #cc0000; stroke-width: 0.4; fill: none; }
+      .green { stroke: #007700; stroke-width: 0.4; fill: none; }
+    </style>
+  </defs>
+  <!-- Drawing frame: left 20mm, others 10mm -->
+  <rect x="20" y="10" width="267" height="190" class="frame"/>
+  <!-- Title block -->
+  <rect x="197" y="185" width="90" height="15" class="titleblock"/>
+  <line x1="197" y1="192" x2="287" y2="192" class="titleblock"/>
+  <line x1="242" y1="185" x2="242" y2="200" class="titleblock"/>
+  <text x="199" y="190" class="label-sm">CAD-AI / DG-08</text>
+  <text x="244" y="190" class="label-sm">Zentralprojektion Quader</text>
+  <text x="199" y="198" class="label-sm">Darstellende Geometrie</text>
+  <text x="244" y="198" class="label-sm">A4 quer | 1:1</text>
+<line x1="25" y1="80.00" x2="280" y2="80.00" class="construction"/>
+<text x="255" y="78.00" class="label-sm">Horizont</text>
+<circle cx="148.00" cy="80.00" r="1" fill="#d00"/>
+<text x="150.00" y="78.00" class="label" fill="#d00">F (Fluchtpunkt)</text>
+<rect x="90.00" y="110.00" width="50.00" height="35.00" class="result"/>
+<line x1="90.00" y1="110.00" x2="148.00" y2="80.00" class="construction"/>
+<line x1="140.00" y1="110.00" x2="148.00" y2="80.00" class="construction"/>
+<line x1="140.00" y1="145.00" x2="148.00" y2="80.00" class="construction"/>
+<line x1="90.00" y1="145.00" x2="148.00" y2="80.00" class="construction"/>
+<line x1="110.30" y1="99.50" x2="142.80" y2="99.50" class="result"/>
+<line x1="142.80" y1="99.50" x2="142.80" y2="122.25" class="result"/>
+<line x1="142.80" y1="122.25" x2="110.30" y2="122.25" class="hidden"/>
+<line x1="110.30" y1="122.25" x2="110.30" y2="99.50" class="hidden"/>
+<line x1="90.00" y1="110.00" x2="110.30" y2="99.50" class="result"/>
+<line x1="140.00" y1="110.00" x2="142.80" y2="99.50" class="result"/>
+<line x1="140.00" y1="145.00" x2="142.80" y2="122.25" class="result"/>
+<line x1="90.00" y1="145.00" x2="110.30" y2="122.25" class="hidden"/>
+<line x1="25" y1="165.00" x2="280" y2="165.00" class="ground"/>
+<text x="255" y="169.00" class="label-sm" fill="#070">Standlinie</text>
+<circle cx="90.00" cy="110.00" r="0.6" fill="#000"/>
+<text x="86.00" y="108.50" class="label">A</text>
+<circle cx="140.00" cy="110.00" r="0.6" fill="#000"/>
+<text x="136.00" y="108.50" class="label">B</text>
+<circle cx="140.00" cy="145.00" r="0.6" fill="#000"/>
+<text x="136.00" y="149.00" class="label">C</text>
+<circle cx="90.00" cy="145.00" r="0.6" fill="#000"/>
+<text x="86.00" y="149.00" class="label">D</text>
+<circle cx="110.30" cy="99.50" r="0.6" fill="#000"/>
+<text x="111.80" y="98.00" class="label">A'</text>
+<circle cx="142.80" cy="99.50" r="0.6" fill="#000"/>
+<text x="144.30" y="98.00" class="label">B'</text>
+<circle cx="142.80" cy="122.25" r="0.6" fill="#000"/>
+<text x="144.30" y="125.25" class="label">C'</text>
+<circle cx="110.30" cy="122.25" r="0.6" fill="#000"/>
+<text x="111.80" y="125.25" class="label">D'</text>
+<text x="200" y="120" class="label-sm">Konstruktionsprinzip:</text>
+<text x="200" y="124" class="label-sm">1. Horizont und Fluchtpunkt F festlegen</text>
+<text x="200" y="128" class="label-sm">2. Vorderfläche maßstäblich zeichnen</text>
+<text x="200" y="132" class="label-sm">3. Fluchtlinien zu F ziehen</text>
+<text x="200" y="136" class="label-sm">4. Tiefe auf Fluchtlinien abtragen</text>
+<text x="200" y="140" class="label-sm">5. Rückfläche verbinden</text>
+<text x="30" y="20" class="title">Aufgabe 8: Zentralprojektion – 1-Punkt-Perspektive</text>
+<text x="30" y="25" class="label-sm">Quader mit Vorderfläche bildparallel, ein Fluchtpunkt</text>
+</svg>

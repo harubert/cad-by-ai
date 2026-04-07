@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DG-Aufgaben - Darstellende Geometrie Oberstufe</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; color: #333; }
+  h1 { color: #1a1a6c; border-bottom: 3px solid #1a1a6c; padding-bottom: 10px; }
+  h2 { color: #2c3e50; margin-top: 40px; }
+  .task { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .task h2 { margin-top: 0; color: #1a1a6c; }
+  .beschreibung { background: #e8f0fe; padding: 12px; border-radius: 5px; border-left: 4px solid #1a73e8; margin: 10px 0; }
+  .mathematik { background: #f0f7e8; padding: 12px; border-radius: 5px; border-left: 4px solid #34a853; margin: 10px 0; }
+  .bewertung { padding: 8px 16px; border-radius: 20px; display: inline-block; font-weight: bold; margin: 10px 0; }
+  .correct { background: #d4edda; color: #155724; }
+  .partial { background: #fff3cd; color: #856404; }
+  .wrong { background: #f8d7da; color: #721c24; }
+  .svg-container { border: 1px solid #ddd; border-radius: 5px; overflow: hidden; margin: 15px 0; background: white; }
+  .svg-container img { width: 100%; height: auto; }
+  .overview { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+  .overview-item { background: white; padding: 15px; border-radius: 5px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .overview-item h3 { font-size: 14px; margin: 0 0 5px 0; color: #1a1a6c; }
+  .overview-item p { font-size: 12px; margin: 0; color: #666; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+  th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+  th { background: #1a1a6c; color: white; }
+  tr:hover { background: #f0f0f0; }
+  .footer { margin-top: 40px; padding: 20px; text-align: center; color: #888; font-size: 12px; border-top: 1px solid #ddd; }
+</style>
+</head>
+<body>
+
+<h1>Darstellende Geometrie - 10 Standardaufgaben der Oberstufe</h1>
+<p><strong>Zielgruppe:</strong> 7./8. Klasse Realgymnasium (17-18 Jahre), oesterreichischer Lehrplan</p>
+<p><strong>Serie:</strong> CAD-AI / DG-01 bis DG-10</p>
+<p><strong>Erstellt:</strong> 2026-04-01 mittels Python + SVG</p>
+
+<h2>Inhaltsuebersicht</h2>
+<table>
+<tr><th>Nr.</th><th>Thema</th><th>Bewertung</th></tr>
+<tr><td>DG-01</td><td>Zweitafelprojektion: Gerade in allgemeiner Lage</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-02</td><td>Zweitafelprojektion: Ebene durch 3 Punkte (Spurgeraden)</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-03</td><td>Kegelschnitt: Ellipse als Schnitt eines Zylinders</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-04</td><td>Kegelschnitt: Parabel als Schnitt eines Kegels</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-05</td><td>Schattenkonstruktion: Quader im Parallellicht</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-06</td><td>Durchdringung Zylinder–Zylinder</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-07</td><td>Axonometrie: Isometrische Darstellung eines L-Profils</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-08</td><td>Perspektive: Zentralprojektion eines Quaders</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-09</td><td>Rotationsfläche: Torus im Aufriss</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+<tr><td>DG-10</td><td>Schraubfläche: Schraublinie auf einem Zylinder</td><td><span class="bewertung correct">Korrekt</span></td></tr>
+</table>
+
+<div class="task">
+  <h2>DG-01: Zweitafelprojektion: Gerade in allgemeiner Lage</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Gegeben sind zwei Punkte A(20|30|40) und B(70|10|60) im Raum. Stelle die Gerade AB in Grund- und Aufriss dar und ermittle die wahre Länge.</div>
+  <div class="svg-container">
+    <img src="dg_01_gerade.svg" alt="Zweitafelprojektion: Gerade in allgemeiner Lage"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Die Zweitafelprojektion bildet jeden Raumpunkt auf zwei Ebenen ab: den Grundriss (π₁, xy-Ebene) und den Aufriss (π₂, xz-Ebene). Die wahre Länge ergibt sich aus wL = √(Δx² + Δy² + Δz²) = √(50² + 20² + 20²) ≈ 57.45. Die Konstruktion der wahren Länge erfolgt durch Umklappung: Im Grundriss wird die Höhendifferenz Δz senkrecht aufgetragen.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Grund- und Aufriss korrekt, Ordnerlinien vorhanden, wahre Länge korrekt berechnet und konstruiert.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-02: Zweitafelprojektion: Ebene durch 3 Punkte (Spurgeraden)</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Gegeben sind drei Punkte P(10|40|20), Q(60|10|50), R(50|50|10). Bestimme die Spurgeraden s₁ (in π₁) und s₂ (in π₂) der Ebene PQR.</div>
+  <div class="svg-container">
+    <img src="dg_02_ebene_spurgeraden.svg" alt="Zweitafelprojektion: Ebene durch 3 Punkte (Spurgeraden)"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Die Spurgerade s₁ ist der Schnitt der Ebene mit der Grundrissebene (z=0). Man findet sie, indem man auf den Verbindungsgeraden PQ, QR, PR jeweils den Punkt mit z=0 bestimmt (lineare Interpolation). Analog ist s₂ der Schnitt mit der Aufrissebene (y=0). Beide Spurgeraden schneiden sich auf der Rissachse x₁₂.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Spurgeraden korrekt durch Interpolation der z=0 bzw. y=0 Punkte auf den Dreieckskanten bestimmt. Darstellung in beiden Rissen korrekt.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-03: Kegelschnitt: Ellipse als Schnitt eines Zylinders</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Ein Kreiszylinder (d=50) wird unter einem Winkel von 45° zur Achse geschnitten. Konstruiere die Schnittellipse und ihre wahre Gestalt.</div>
+  <div class="svg-container">
+    <img src="dg_03_ellipse_zylinder.svg" alt="Kegelschnitt: Ellipse als Schnitt eines Zylinders"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Beim schrägen Schnitt eines Kreiszylinders entsteht eine Ellipse. Die kleine Halbachse b entspricht dem Zylinderradius (b = 25). Die große Halbachse ergibt sich aus a = r/cos(α) = 25/cos(45°) ≈ 35.36. Im Aufriss erscheint die Schnittlinie als Gerade unter 45°. Die wahre Gestalt wird durch Umklappung der Schnittebene ermittelt.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Ellipsenberechnung korrekt (a ≈ 35.36, b = 25). Zylinder im Aufriss und wahre Gestalt der Ellipse korrekt dargestellt.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-04: Kegelschnitt: Parabel als Schnitt eines Kegels</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Ein gerader Kreiskegel mit Öffnungswinkel 60° wird von einer Ebene parallel zu einer Mantellinie geschnitten. Konstruiere die entstehende Parabel.</div>
+  <div class="svg-container">
+    <img src="dg_04_parabel_kegel.svg" alt="Kegelschnitt: Parabel als Schnitt eines Kegels"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Wenn die Schnittebene parallel zu genau einer Mantellinie liegt, entsteht als Kegelschnitt eine Parabel. Beim Halbwinkel von 30° hat die Mantellinie die Richtung (sin30°, 0, cos30°). Die Schnittebene enthält diese Richtung und ist um einen Offset verschoben. Die Schnittkurve wird punktweise berechnet: Für jede Höhe h wird der Schnittpunkt der Ebene mit dem Kegelkreis bestimmt.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Parabelkonstruktion durch mantellinienparallelen Schnitt korrekt. Die Parabel ist symmetrisch und öffnet sich erwartungsgemäß.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-05: Schattenkonstruktion: Quader im Parallellicht</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Ein Quader (40×30×50) wird von Parallellicht aus Richtung (1,1,−1) beleuchtet (45° von links-oben-vorn). Konstruiere den Schlagschatten auf die Grundebene.</div>
+  <div class="svg-container">
+    <img src="dg_05_schatten_quader.svg" alt="Schattenkonstruktion: Quader im Parallellicht"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Bei Parallelprojektion wird jeder Punkt P=(x,y,z) entlang der Lichtrichtung l=(1,1,−1) auf die Grundebene (z=0) projiziert: P_Schatten = (x + z·lx/(−lz), y + z·ly/(−lz), 0) = (x+z, y+z, 0). Der Schlagschatten der oberen Quaderfläche ergibt sich durch Projektion aller vier oberen Eckpunkte.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Schattenkonstruktion im Grundriss korrekt. Lichtrichtung und Projektion der Eckpunkte stimmen. Schattenumriss als Polygon dargestellt.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-06: Durchdringung Zylinder–Zylinder</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Zwei Kreiszylinder gleichen Durchmessers (d=40) durchdringen sich rechtwinklig. Konstruiere die Durchdringungskurve in drei Rissen.</div>
+  <div class="svg-container">
+    <img src="dg_06_durchdringung_zylinder.svg" alt="Durchdringung Zylinder–Zylinder"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Bei zwei gleich großen Zylindern (r₁ = r₂), deren Achsen sich rechtwinklig schneiden, degenerieren die Durchdringungskurven zu zwei Ellipsen, die im Seitenriss als Geraden (Diagonalen des Schnittquadrats) erscheinen. Im Aufriss (Blick entlang einer Zylinderachse) fällt die Durchdringungskurve mit dem Kreisumriss zusammen.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Sonderfall gleicher Durchmesser korrekt erkannt: Durchdringungskurven sind ebene Kurven (Ellipsen). Im Seitenriss als Geradenkreuz dargestellt.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-07: Axonometrie: Isometrische Darstellung eines L-Profils</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Stelle ein L-Profil (Basis 50×20×10, Steg 10×20×40) in isometrischer Axonometrie dar.</div>
+  <div class="svg-container">
+    <img src="dg_07_isometrie_l_profil.svg" alt="Axonometrie: Isometrische Darstellung eines L-Profils"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> In der Isometrie stehen alle drei Achsen im Winkel von 120° zueinander (x und y unter 30° zur Horizontalen, z vertikal). Alle Achsen haben denselben Verkürzungsfaktor (bei normierter Isometrie: 1:1:1). Die Transformation: x_iso = x·cos(−30°) + y·cos(210°), y_iso = x·sin(−30°) + y·sin(210°) − z.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Isometrische Projektion korrekt umgesetzt. L-Profil mit sichtbaren und verdeckten Kanten dargestellt. Bemaßung vorhanden.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-08: Perspektive: Zentralprojektion eines Quaders</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Konstruiere einen Quader in 1-Punkt-Perspektive (Zentralprojektion) mit bildparalleler Vorderfläche.</div>
+  <div class="svg-container">
+    <img src="dg_08_zentralprojektion.svg" alt="Perspektive: Zentralprojektion eines Quaders"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Bei der 1-Punkt-Perspektive liegt die Vorderfläche des Quaders parallel zur Bildebene und wird maßstäblich abgebildet. Alle Tiefenlinien (senkrecht zur Bildebene) konvergieren in einem einzigen Fluchtpunkt F auf dem Horizont. Die Tiefe wird durch den Abstand auf den Fluchtlinien bestimmt. Der Horizont liegt in Augenhöhe.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Fluchtpunkt, Horizont und Standlinie korrekt eingezeichnet. Quader mit konvergierenden Tiefenlinien korrekt konstruiert. Verdeckte Kante gestrichelt.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-09: Rotationsfläche: Torus im Aufriss</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Stelle einen Torus (R=30, r=10) im Aufriss dar. Die Rotationsachse steht vertikal.</div>
+  <div class="svg-container">
+    <img src="dg_09_torus_aufriss.svg" alt="Rotationsfläche: Torus im Aufriss"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Der Torus entsteht durch Rotation eines Kreises (Radius r=10) um eine Achse im Abstand R=30. Im Aufriss (Seitenansicht) zeigt sich die Kontur als: zwei Meridiankreise (Schnitte bei u=0 und u=π) mit Radius r, zentriert bei (±R, 0), verbunden durch zwei horizontale Tangentiallinien bei z=±r. Parametrisierung: x=(R+r·cos v)·cos u, y=(R+r·cos v)·sin u, z=r·sin v.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Torus-Aufriss korrekt: zwei Meridiankreise mit Tangentiallinien. Rotationsachse und Bemaßung vorhanden.</em></p>
+</div>
+
+<div class="task">
+  <h2>DG-10: Schraubfläche: Schraublinie auf einem Zylinder</h2>
+  <div class="beschreibung"><strong>Aufgabenstellung:</strong> Konstruiere eine Schraublinie auf einem Zylinder (d=40) mit Steigung h=60 und 2 Umgängen. Zeige Aufriss, Grundriss und Abwicklung.</div>
+  <div class="svg-container">
+    <img src="dg_10_schraublinie.svg" alt="Schraubfläche: Schraublinie auf einem Zylinder"/>
+  </div>
+  <div class="mathematik"><strong>Mathematischer Hintergrund:</strong> Die Schraublinie ist die Bahnkurve eines Punktes, der sich gleichförmig auf einem Zylinderkreis dreht und gleichzeitig in Achsenrichtung verschiebt. Parametrisierung: x=r·cos t, y=r·sin t, z=h·t/(2π). Im Aufriss erscheint sie als Sinuskurve, im Grundriss als Kreis. In der Abwicklung des Zylindermantels wird sie zur Geraden. Steigungswinkel α = arctan(h/(π·d)) ≈ 25.5°.</div>
+  <p><span class="bewertung correct">Selbstbewertung: Korrekt</span></p>
+  <p><em>Schraublinie korrekt als Sinuskurve im Aufriss mit Sichtbarkeitsunterscheidung (sichtbar/verdeckt). Abwicklung zeigt die Geradenentwicklung korrekt.</em></p>
+</div>
+
+<div class="footer">
+  <p>CAD-AI Projekt - Darstellende Geometrie | Generiert mit Python + SVG</p>
+  <p>PH-Workshop Graz, 2026-04-09: KI im Geometrieunterricht</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="297mm" height="210mm"
+     font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>
+      .construction { stroke: #aaa; stroke-width: 0.15; fill: none; }
+      .result { stroke: #000; stroke-width: 0.5; fill: none; }
+      .result-fill { stroke: #000; stroke-width: 0.5; }
+      .hidden { stroke: #000; stroke-width: 0.4; fill: none; stroke-dasharray: 2,1; }
+      .center { stroke: #d00; stroke-width: 0.2; fill: none; stroke-dasharray: 4,1,1,1; }
+      .dim { stroke: #00a; stroke-width: 0.15; fill: none; }
+      .label { font-size: 3px; fill: #000; }
+      .label-sm { font-size: 2.2px; fill: #444; }
+      .title { font-size: 3.5px; fill: #000; font-weight: bold; }
+      .frame { stroke: #000; stroke-width: 0.5; fill: none; }
+      .titleblock { stroke: #000; stroke-width: 0.3; fill: none; }
+      .axis { stroke: #d00; stroke-width: 0.25; fill: none; stroke-dasharray: 6,1,1,1; }
+      .ground { stroke: #070; stroke-width: 0.3; fill: none; }
+      .shadow-fill { fill: #ccc; stroke: none; opacity: 0.5; }
+      .shadow-line { stroke: #555; stroke-width: 0.4; fill: none; }
+      .blue { stroke: #0055cc; stroke-width: 0.4; fill: none; }
+      .red { stroke: #cc0000; stroke-width: 0.4; fill: none; }
+      .green { stroke: #007700; stroke-width: 0.4; fill: none; }
+    </style>
+  </defs>
+  <!-- Drawing frame: left 20mm, others 10mm -->
+  <rect x="20" y="10" width="267" height="190" class="frame"/>
+  <!-- Title block -->
+  <rect x="197" y="185" width="90" height="15" class="titleblock"/>
+  <line x1="197" y1="192" x2="287" y2="192" class="titleblock"/>
+  <line x1="242" y1="185" x2="242" y2="200" class="titleblock"/>
+  <text x="199" y="190" class="label-sm">CAD-AI / DG-03</text>
+  <text x="244" y="190" class="label-sm">Ellipse - Zylinderschnitt</text>
+  <text x="199" y="198" class="label-sm">Darstellende Geometrie</text>
+  <text x="244" y="198" class="label-sm">A4 quer | 1:1</text>
+<line x1="50.00" y1="40.00" x2="50.00" y2="136.00" class="result"/>
+<line x1="110.00" y1="40.00" x2="110.00" y2="136.00" class="result"/>
+<line x1="50.00" y1="40.00" x2="110.00" y2="40.00" class="result"/>
+<line x1="50.00" y1="136.00" x2="110.00" y2="136.00" class="result"/>
+<line x1="80.00" y1="35.00" x2="80.00" y2="141.00" class="center"/>
+<line x1="50.00" y1="130.00" x2="110.00" y2="70.00" class="blue"/>
+<text x="112.00" y="70.00" class="label" fill="#0055cc">Schnittebene 45°</text>
+<circle cx="50.00" cy="130.00" r="0.8" fill="#cc0000"/>
+<circle cx="110.00" cy="70.00" r="0.8" fill="#cc0000"/>
+<text x="195.00" y="49.57" class="title">Wahre Gestalt der Schnittellipse</text>
+<polyline points="240.00,100.00 239.94,102.66 239.76,105.32 239.47,107.95 239.06,110.55 238.53,113.11 237.89,115.62 237.14,118.06 236.29,120.44 235.33,122.73 234.27,124.94 233.12,127.04 231.87,129.04 230.54,130.93 229.12,132.69 227.63,134.32 226.07,135.82 224.45,137.18 222.77,138.39 221.04,139.45 219.27,140.35 217.46,141.09 215.62,141.67 213.76,142.09 211.88,142.34 210.00,142.43 208.12,142.34 206.24,142.09 204.38,141.67 202.54,141.09 200.73,140.35 198.96,139.45 197.23,138.39 195.55,137.18 193.93,135.82 192.37,134.32 190.88,132.69 189.46,130.93 188.13,129.04 186.88,127.04 185.73,124.94 184.67,122.73 183.71,120.44 182.86,118.06 182.11,115.62 181.47,113.11 180.94,110.55 180.53,107.95 180.24,105.32 180.06,102.66 180.00,100.00 180.06,97.34 180.24,94.68 180.53,92.05 180.94,89.45 181.47,86.89 182.11,84.38 182.86,81.94 183.71,79.56 184.67,77.27 185.73,75.06 186.88,72.96 188.13,70.96 189.46,69.07 190.88,67.31 192.37,65.68 193.93,64.18 195.55,62.82 197.23,61.61 198.96,60.55 200.73,59.65 202.54,58.91 204.38,58.33 206.24,57.91 208.12,57.66 210.00,57.57 211.88,57.66 213.76,57.91 215.62,58.33 217.46,58.91 219.27,59.65 221.04,60.55 222.77,61.61 224.45,62.82 226.07,64.18 227.63,65.68 229.12,67.31 230.54,69.07 231.87,70.96 233.12,72.96 234.27,75.06 235.33,77.27 236.29,79.56 237.14,81.94 237.89,84.38 238.53,86.89 239.06,89.45 239.47,92.05 239.76,94.68 239.94,97.34 240.00,100.00" class="result"/>
+<line x1="210.00" y1="54.57" x2="210.00" y2="145.43" class="center"/>
+<line x1="177.00" y1="100.00" x2="243.00" y2="100.00" class="center"/>
+<text x="212.00" y="56.57" class="label-sm">a = 35.4</text>
+<text x="241.00" y="99.00" class="label-sm">b = 25.0</text>
+<line x1="50.00" y1="130.00" x2="180.00" y2="130.00" class="construction"/>
+<line x1="65.00" y1="115.00" x2="195.00" y2="115.00" class="construction"/>
+<line x1="80.00" y1="100.00" x2="210.00" y2="100.00" class="construction"/>
+<line x1="95.00" y1="85.00" x2="225.00" y2="85.00" class="construction"/>
+<line x1="110.00" y1="70.00" x2="240.00" y2="70.00" class="construction"/>
+<text x="30" y="20" class="title">Aufgabe 3: Ellipse als Schnitt eines Zylinders</text>
+<text x="30" y="25" class="label-sm">Zylinder d=50, Schnittwinkel=45°</text>
+<text x="30" y="29" class="label-sm">Halbachsen: a=35.36, b=25.00</text>
+</svg>

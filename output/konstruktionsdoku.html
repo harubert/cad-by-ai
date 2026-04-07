@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>KI im Geometrieunterricht &mdash; Konstruktionsdokumentation</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 2em auto; padding: 0 1em; line-height: 1.6; color: #222; }
+  h1 { border-bottom: 3px solid #333; padding-bottom: 0.3em; }
+  h2 { color: #444; margin-top: 2em; border-left: 4px solid #2196F3; padding-left: 0.5em; }
+  .step { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; margin: 1em 0 2em 0; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+  .human, .ai { padding: 1em 1.2em; }
+  .human { background: #FFF8E1; }
+  .ai { background: #E3F2FD; }
+  .label { font-weight: bold; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5em; }
+  .human .label { color: #F57F17; }
+  .ai .label { color: #1565C0; }
+  .assessment { margin-top: 1em; padding: 0.8em; border-radius: 6px; font-size: 0.9em; }
+  .human .assessment { background: #FFF3C4; border-left: 3px solid #FFB300; }
+  .ai .assessment { background: #BBDEFB; border-left: 3px solid #1976D2; }
+  .assessment strong { display: block; margin-bottom: 0.3em; }
+  .error { background: #FFEBEE; border-left: 3px solid #E53935; }
+  .ok { background: #E8F5E9; border-left: 3px solid #43A047; }
+  .partial { background: #FFF8E1; border-left: 3px solid #FFB300; }
+  blockquote { margin: 0.5em 0; padding: 0.5em 1em; background: rgba(0,0,0,0.04); border-radius: 4px; font-style: italic; }
+  code { background: #f5f5f5; padding: 0.1em 0.3em; border-radius: 3px; font-size: 0.9em; }
+  .meta { color: #777; font-size: 0.85em; }
+  .insight { background: #F3E5F5; border: 1px solid #CE93D8; border-radius: 8px; padding: 1em 1.2em; margin: 1.5em 0; }
+  .insight h3 { color: #7B1FA2; margin-top: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em 0.8em; text-align: left; }
+  th { background: #f5f5f5; }
+  .step-img { text-align: center; margin: 1em 0; }
+  .step-img img, .step-img object { max-width: 300px; border: 1px solid #ddd; border-radius: 4px; }
+  .step-img figcaption { font-size: 0.8em; color: #666; margin-top: 0.3em; }
+  /* Lightbox */
+  .lightbox-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(255,255,255,0.97); z-index:1000; cursor:pointer; align-items:center; justify-content:center; }
+  .lightbox-overlay.active { display:flex; }
+  .lightbox-overlay img, .lightbox-overlay object { max-width:95vw; max-height:95vh; background:white; }
+  img, object { cursor:pointer; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', function() { overlay.classList.remove('active'); overlay.innerHTML = ''; });
+
+  document.querySelectorAll('img').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (overlay.classList.contains('active')) return; // schon offen
+      e.stopPropagation();
+      var src = el.src;
+      if (!src) return;
+      var img = document.createElement('img');
+      img.src = src;
+      img.style.maxWidth = '95vw'; img.style.maxHeight = '95vh';
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function() { overlay.classList.remove('active'); overlay.innerHTML = ''; });
+      overlay.innerHTML = ''; overlay.appendChild(img);
+      overlay.classList.add('active');
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<h1>KI-gestützte Geometrie-Konstruktion</h1>
+<p class="meta">Dokumentation einer schrittweisen Konstruktion eines Alu-Strangpressprofils 40&times;40mm<br>
+Mensch-KI-Dialog &mdash; Graz, April 2026</p>
+
+<div class="insight">
+<h3>Ausgangslage</h3>
+<div class="step-img">
+  <img src="Ausgangslage.png" width="500" style="border:1px solid #ddd; border-radius:4px;">
+  <figcaption>Produktseite Reichelt: Aluminiumprofil 40&times;40 L I-Typ Nut 8 leicht, 500mm
+  (<a href="https://www.reichelt.at/at/de/shop/produkt/aluminiumprofil_40x40_l_i-typ_nut_8_leicht_500mm-377442">Link</a>)
+  &mdash; Art.Nr. P40 40X40-0500L, Hst.-Teile-Nr. 60800-STLS-0500</figcaption>
+</div>
+</div>
+
+<div class="insight">
+<h3>Ziel: Alu-Strangpressprofil 40&times;40mm nachkonstruieren</h3>
+<div class="step-img" style="display:flex; gap:1em; justify-content:center; align-items:center;">
+  <div>
+    <img src="../humanImput/C100_60800-STLS-0500-2.jpg" width="250" style="border:1px solid #ddd; border-radius:4px;">
+    <figcaption>Vorlage (Datenblatt)</figcaption>
+  </div>
+  <div style="font-size:2em; color:#888;">&rarr;</div>
+  <div>
+    <img src="aufgabe01_Final-Schnitt.svg" width="250" style="border:1px solid #ddd; border-radius:4px;">
+    <figcaption>Ergebnis (KI-konstruiert)</figcaption>
+  </div>
+</div>
+</div>
+
+<div class="insight">
+<h3>Forschungsfrage</h3>
+<p>Welche Kompetenzen braucht ein Mensch, um mit KI Geometrie-Konstruktionen durchzuführen?
+Wie robust kann KI mit unpräzisen, umgangssprachlichen Anweisungen umgehen?
+Und was ändert sich dadurch am Geometrieunterricht?</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 1: Quadrat</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Ein Quadrat 20 &times; 40&ldquo; &mdash; korrigiert zu: &bdquo;40 &times; 40 wollte ich sagen&ldquo;</blockquote>
+    <div class="assessment partial">
+      <strong>Bewertung der Anweisung:</strong>
+      Erster Versuch fehlerhaft (20&times;40 ist kein Quadrat). Selbstkorrektur war klar und eindeutig.
+      &bdquo;Quadrat&ldquo; + &bdquo;40&times;40&ldquo; ist mathematisch redundant, aber unmissverständlich.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Quadrat mit Seitenlänge 40mm, Mittelpunkt im Ursprung. Eckpunkte: (&plusmn;20, &plusmn;20).</p>
+    <div class="step-img"><img src="schritte/schritt01_quadrat_overlay.svg" width="250"></div>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Korrekt ausgeführt. Erste Anweisung (20&times;40) wurde als Rechteck umgesetzt, Korrektur sofort übernommen.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 2: Eckenabrundung</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Jetzt Abrundung bei den Ecken 4,5&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Knapp aber eindeutig. &bdquo;Abrundung&ldquo; impliziert Kreisbogen-Verrundung.
+      Einheit fehlt (cm vs. mm) &mdash; aus dem Kontext (40mm Profil) korrekt als 4,5mm interpretiert.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Mathematisch: Minkowski-Differenz gefolgt von Minkowski-Summe mit Radius r&nbsp;=&nbsp;4,5mm.
+    <br><code>profile = square.buffer(-4.5).buffer(4.5)</code>
+    <br>Erzeugt ein Quadrat mit Viertelkreisbögen (R4,5) an allen vier Ecken.</p>
+    <div class="step-img"><img src="schritte/schritt02_r45_overlay.svg" width="250"></div>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Korrekt. Shapely-Buffer-Technik ist der Standardweg für Offset-Verrundung.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 3: Zentralbohrung</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;In der Mitte eine Bohrung 6,8&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Klar. &bdquo;Mitte&ldquo; = Ursprung, &bdquo;Bohrung&ldquo; = Kreis. 6,8 = Durchmesser (Konvention bei Bohrungen).
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Kreis mit Mittelpunkt (0,&thinsp;0) und Radius r&nbsp;=&nbsp;3,4mm. Boolean-Differenz vom Profil.</p>
+    <div class="step-img"><img src="schritte/schritt03_bohrung_overlay.svg"></div>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Korrekt. 6,8 wurde korrekt als Durchmesser (nicht Radius) interpretiert.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 4: Nutöffnungen</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Jede Seite hat eine Unterbrechung von 8 in der Mitte der Seite, von dort geht es dann nach innen&ldquo;</blockquote>
+    <div class="assessment partial">
+      <strong>Bewertung der Anweisung:</strong>
+      &bdquo;Unterbrechung von 8&ldquo; &mdash; Breite klar. &bdquo;In der Mitte&ldquo; &mdash; mittig auf der Seite, klar.
+      <em>Unterdefiniert:</em> &bdquo;Von dort geht es nach innen&ldquo; lässt die <strong>Tiefe</strong> offen.
+      KI musste einen Wert annehmen (5mm) und nachfragen.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>4 rechteckige Ausschnitte, je 8mm breit, mittig auf jeder Seite. Tiefe zunächst 5mm angenommen.
+    <br>Später auf Anweisung korrigiert: Tiefe = 12,5mm.</p>
+    <div class="step-img"><img src="schritte/schritt04_nuten_overlay.svg"></div>
+    <div class="assessment partial">
+      <strong>Bewertung der Umsetzung:</strong>
+      Grundform korrekt. Tiefe musste erfragt werden &mdash; sinnvolles Verhalten bei unterdefinierter Angabe.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 5: Nut-Eintrittskanten abrunden</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;An diesen Ecken machen wir eine Abrundung von 2mm Radius. Es geht von dort weg, jeweils vier Millimeter Richtung Kern.&ldquo;</blockquote>
+    <div class="assessment partial">
+      <strong>Bewertung der Anweisung:</strong>
+      Zwei Anweisungen in einem Satz: (1) R2-Abrundung, (2) Nuttiefe 4mm.
+      &bdquo;An diesen Ecken&ldquo; &mdash; bezieht sich auf die Nut-Eintrittskanten, war im Kontext klar.
+      <em>Problem:</em> KI interpretierte die Abrundung zunächst falsch (am Nutboden statt an der Eintrittskante).
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>1. Versuch (falsch):</strong> R2 an den Nutboden-Ecken (konkave Ecken).
+    <br><strong>Korrektur nach Feedback:</strong> R2 an den Eintrittskanten (konvexe Ecken des Materials, wo Außenseite in Nutwand übergeht).
+    <br>Technik: <code>profile.buffer(-2).buffer(2)</code> rundet konvexe Ecken.</p>
+    <div class="step-img">
+      <img src="schritte/schritt06_r2_richtig_overlay.svg" width="220">
+      <img src="schritte/schritt05_FAIL_r2_falsch_overlay.svg" width="220">
+      <figcaption>Links: korrekt (R2 an Eintrittskante). Rechts: FAIL (R2 am Nutboden, zu großer Radius).</figcaption>
+    </div>
+    <div class="assessment error">
+      <strong>Bewertung der Umsetzung:</strong>
+      Erster Versuch falsch. &bdquo;Diese Ecken&ldquo; war mehrdeutig &mdash; es gibt 8 Ecken pro Nut.
+      Die Korrektur gelang erst nach explizitem Hinweis: &bdquo;Von der Außenkante in die Nut hinein&ldquo;.
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Referenzierung ist kritisch</h3>
+<p>&bdquo;An diesen Ecken&ldquo; &mdash; welche Ecken? Eine Nut hat 4 Innenecken und 2 Eintrittskanten.
+Der Mensch meinte die Eintrittskanten, die KI verstand die Innenecken.
+<strong>Präzise Referenzierung von geometrischen Elementen</strong> ist eine Kernkompetenz,
+die auch bei KI-Nutzung unverzichtbar bleibt.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 6: Punktbeschriftung (A, B)</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Am Boden der Nut liegen die zwei Eckpunkte A und B auf einer Seite. Bei der Nut in einer Tiefe von 4mm auf der Seitenwand der Nut ein Punkt C.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Klar und präzise. Definiert Punkte durch ihre Lage relativ zur Nut-Geometrie.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>A&nbsp;=&nbsp;(&minus;4,&thinsp;7.5), B&nbsp;=&nbsp;(4,&thinsp;7.5) am Nutboden der oberen Nut.
+    <br>C auf der Nutseitenwand bei 4mm (später 5mm) Tiefe ab Außenkante.
+    <br>Alle Punkte 4-fach gespiegelt.</p>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Korrekt platziert. Späteren Verschiebung von C um 1mm wurde korrekt umgesetzt.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 7: Vereinfachung der Beschriftung</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Mach A und B gleich, weil die sind eh gespiegelt. C und D sind auch gespiegelt, mach daraus einfach C.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Pragmatisch und klar. Nutzt die Symmetrie: es genügt, eine Hälfte einer Nut zu beschriften.
+      <em>Mathematisch:</em> Identifikation äquivalenter Punkte unter der Spiegelungssymmetrie D<sub>4</sub>.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Nur noch A, C, E an der rechten Hälfte der oberen Nut beschriftet. Rest ergibt sich durch Symmetrie.</p>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Korrekt vereinfacht. Symmetrie-Argumentation sauber umgesetzt.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 8: T-Nut-Hinterschnitt (C &rarr; E)</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Jeweils von C und D, jetzt verbreitern wir die Nut um 4mm nach außen. Es entsteht aber keine Ecke, sondern wieder eine Rundung mit 1mm Radius.&ldquo;</blockquote>
+    <div class="assessment partial">
+      <strong>Bewertung der Anweisung:</strong>
+      Die Verbreiterung ist klar (4mm seitwärts, Punkt E entsteht).
+      <em>Missverständnis:</em> Die KI erzeugte eine T-Nut mit waagrechtem Absatz.
+      Der Mensch wollte: Von E eine <strong>schräge Linie</strong> zum Nutboden.
+      Das wurde erst in Schritt 9 (&bdquo;E ist die neue Verbindung zu B&ldquo;) klar.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>1. Versuch (falsch):</strong> Klassische T-Nut mit rechtwinkligem Absatz erzeugt.
+    <br><strong>Rückgängig gemacht</strong> auf Anweisung des Nutzers.
+    <br><strong>2. Versuch:</strong> Explizites Polygon mit Punkten B&rarr;C&rarr;E&rarr;A definiert,
+    wobei E&rarr;A eine Schräge bildet.</p>
+    <div class="step-img">
+      <img src="schritte/schritt08_FAIL_tnut_overlay.svg" width="220">
+      <img src="schritte/schritt08_hinterschnitt_overlay.svg" width="220">
+      <figcaption>Links: FAIL (T-Nut mit rechtwinkligem Absatz). Rechts: korrekt (schräge Flanke).</figcaption>
+    </div>
+    <div class="assessment error">
+      <strong>Bewertung der Umsetzung:</strong>
+      Erster Versuch: KI assoziierte &bdquo;Verbreiterung&ldquo; mit klassischer T-Nut (rechtwinkliger Hinterschnitt).
+      Der Mensch meinte eine schräge Flanke. Erst durch schrittweise Punkt-für-Punkt-Konstruktion gelöst.
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Implizites Wissen vs. explizite Anweisung</h3>
+<p>Die KI hat &bdquo;Nut verbreitern&ldquo; mit ihrem Vorwissen über T-Nuten interpretiert
+und eine Standard-T-Nut erzeugt. Der Mensch hatte aber eine <strong>andere</strong> Form im Sinn.
+<br><strong>Lösung:</strong> Punkt-für-Punkt-Konstruktion statt Formbezeichnungen.
+Das Benennen von Eckpunkten und schrittweises Aufbauen erwies sich als robustester Kommunikationsweg.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 9: Verrundung bei C</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;C hat einen Millimeter Rundungsradius.&ldquo; &mdash; dann: &bdquo;Lass C wieder eine Ecke sein.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Erste Anweisung klar. Die KI hatte Schwierigkeiten, nur C zu verrunden ohne andere Geometrie zu verändern.
+      Pragmatische Lösung: Zurück zur scharfen Ecke.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Buffer-basierte Verrundung betrifft <em>immer alle</em> Ecken gleichen Typs.
+    Selektive Verrundung einzelner Ecken ist mit Shapely-Buffern nicht direkt möglich.
+    <br>Versuch mit konkaver Verrundung veränderte die Gesamtgeometrie &rarr; zurückgenommen.</p>
+    <div class="assessment error">
+      <strong>Bewertung der Umsetzung:</strong>
+      Technische Limitierung: Globale Buffer-Operation kann nicht einzelne Ecken ansprechen.
+      Für selektive Verrundung wäre ein lokaler Bogen-Einsatz nötig (manuelles Ersetzen der Ecke durch einen Kreisbogen).
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Werkzeug bestimmt Möglichkeiten</h3>
+<p>Die Shapely-Buffer-Methode (<code>buffer(-r).buffer(r)</code>) ist elegant für
+<em>globale</em> Verrundung, versagt aber bei <em>selektiver</em> Verrundung einzelner Ecken.
+In einem echten CAD-System (z.B. CadQuery, FreeCAD) kann man einzelne Kanten verrunden.
+<strong>Die Wahl des Werkzeugs begrenzt, was formulierbar ist.</strong></p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 10: Punkt D und Kreisbogenkonstruktion</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Punkt D, von A aus gesehen 45 Grad nach rechts oben in einer Entfernung von 8mm.
+    Nehmen wir A und D als Eckpunkte der Basis eines gleichschenkligen Dreiecks.
+    Die Spitze M liegt links über A. Die Höhe des Dreiecks auf M ist 15.
+    Konstruiere einen Kreisbogen von A bis D mit Mittelpunkt M und Radius MA.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Komplex aber mathematisch korrekt formuliert:
+      <ul>
+        <li>Polarkoordinaten für D (Winkel + Abstand von A)</li>
+        <li>Gleichschenkliges Dreieck zur Definition des Kreismittelpunkts</li>
+        <li>Kreisbogen über Mittelpunkt + Radius + Start/Endpunkt</li>
+      </ul>
+      <em>Bemerkenswert:</em> Der Mensch nutzt hier fortgeschrittene geometrische Konstruktions&shy;methoden,
+      um einen präzisen Kreisbogen zu definieren &mdash; genau die Art von Kompetenz,
+      die im KI-Zeitalter <strong>wichtiger</strong> wird, nicht weniger.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><em>Noch ausstehend.</em> Mathematische Formulierung:</p>
+    <table>
+      <tr><th>Element</th><th>Definition</th><th>Wert</th></tr>
+      <tr><td>A</td><td>Nutboden rechts</td><td>(4, 7.5)</td></tr>
+      <tr><td>D</td><td>A + 8&middot;(cos 45&deg;, sin 45&deg;)</td><td>&approx; (9.66, 13.16)</td></tr>
+      <tr><td>m = |AD|</td><td>Basis des Dreiecks</td><td>8mm</td></tr>
+      <tr><td>S</td><td>Mittelpunkt von AD</td><td>&approx; (6.83, 10.33)</td></tr>
+      <tr><td>M</td><td>S + 15&middot;n, n &perp; AD nach links</td><td>&approx; (&minus;3.78, 20.94)</td></tr>
+      <tr><td>r = |MA|</td><td>Kreisradius</td><td>&approx; 15.53mm</td></tr>
+      <tr><td>Bogen</td><td>Kreisbogen von A nach D, Mittelpunkt M</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 10a: Selektive Verrundung &mdash; B mit R2, C scharf</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;B hat jeweils 2mm Rundung als Radius.&ldquo; &mdash; &bdquo;C hat einen Millimeter Rundungsradius.&ldquo; &mdash; dann: &bdquo;Lass C wieder eine Ecke sein.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Klar formuliert. Der Mensch erkennt, dass die KI mit der selektiven Verrundung kämpft, und wählt pragmatisch die scharfe Ecke.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>Lösung:</strong> Zweistufiger Ansatz &mdash; erst einfachen Schlitz schneiden und R2 anwenden (betrifft nur B),
+    dann Hinterschnitt nachträglich hinzufügen (C bleibt scharf).
+    <br>Dies umgeht die Limitierung der globalen Buffer-Operation.</p>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Kreative Lösung für die technische Limitierung. Reihenfolge der Operationen als Ersatz für selektive Verrundung.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 11: Punkt D &mdash; Polarkoordinaten</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Punkt D, von A aus gesehen 45 Grad nach rechts oben in einer Entfernung von 8mm.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Präzise Polarkoordinaten-Angabe relativ zu A. Abstand wurde von 10mm auf 8mm korrigiert.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>D = A + 8&middot;(cos&thinsp;45&deg;, sin&thinsp;45&deg;) &approx; (9.66,&thinsp;13.16).
+    <br>Später angepasst: D_x = G_x, sodass D exakt unterhalb von G liegt. Dabei wird |AD|&nbsp;=&nbsp;8mm beibehalten,
+    D_y ergibt sich aus dem Satz des Pythagoras: D_y = A_y + &radic;(8&sup2; &minus; (D_x&minus;A_x)&sup2;).</p>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Korrekt. Die nachträgliche Anpassung (D unter G) erforderte Neuberechnung &mdash; sauber gelöst.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 12: Kreisbogenkonstruktion via Dreieck</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Nehmen wir A und D als Basis eines gleichschenkligen Dreiecks. Die Spitze M liegt links über A.
+    Die Höhe des Dreiecks auf M ist 15. Konstruiere einen Kreisbogen von A bis D mit Mittelpunkt M.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Mathematisch anspruchsvolle Konstruktion, korrekt formuliert:
+      <ul>
+        <li>Gleichschenkliges Dreieck ADM mit Basis m&nbsp;=&nbsp;AD</li>
+        <li>M auf der Mittelsenkrechten von AD, Höhe h auf die Basis</li>
+        <li>Kreisbogen mit Mittelpunkt M, Radius |MA|&nbsp;=&nbsp;|MD|</li>
+      </ul>
+      Die Höhe wurde iterativ angepasst: 15&nbsp;&rarr;&nbsp;10&nbsp;&rarr;&nbsp;6mm.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>1. Versuch (fehlgeschlagen):</strong> Kreisbogen direkt in die Nut-Geometrie (Shapely-Polygon) eingebaut.
+    Die großen Bögen überlappten bei 90&deg;-Rotation &rarr; Shapely-Topologiefehler.
+    <br><strong>2. Versuch (fehlgeschlagen):</strong> <code>make_valid()</code> löste das Problem nicht zufriedenstellend &mdash; Geometrie &bdquo;abgeschossen&ldquo;.
+    <br><strong>3. Versuch (Erfolg):</strong> Kreisbogen als <strong>separate grüne SVG-Linie</strong> gezeichnet,
+    unabhängig von der roten Shapely-Geometrie. Verwendet SVG-Arc-Befehl (<code>&lt;path d="... A ..."&gt;</code>).
+    <br>Erst als Overlay verifiziert, dann auf alle 8 Stellen gespiegelt.</p>
+    <div class="assessment error">
+      <strong>Bewertung der Umsetzung:</strong>
+      Zwei Fehlversuche. Die Shapely-Buffer-Geometrie ist für Kreisbögen in Polygonen ungeeignet.
+      Der SVG-Arc-Ansatz (Darstellung getrennt von Geometrie) war die pragmatische Lösung.
+      <br><em>Erkenntnis:</em> Manchmal ist es besser, die Darstellung direkt zu manipulieren statt über den Umweg einer Geometrie-Engine.
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Schrittweise Verifikation rettet den Prozess</h3>
+<p>Der Mensch bat darum, den Kreisbogen <strong>zuerst als grüne Hilfslinie</strong> einzuzeichnen,
+bevor er in die Kontur integriert wird. Dieses Vorgehen &mdash; &bdquo;erst zeigen, dann einbauen&ldquo; &mdash;
+verhinderte, dass die Fehlversuche die bestehende Arbeit zerstörten.
+<br><strong>Visuelle Verifikation vor irreversibler Änderung</strong> ist eine Schlüsselstrategie
+bei der Zusammenarbeit mit KI.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 13: Punkte F und G</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Von E aus liegt 2,5mm darüber der Punkt F.&ldquo;
+    <br>&bdquo;Der Punkt G, 2,5 Zentimeter rechts von E.&ldquo; &mdash; korrigiert zu: &bdquo;Millimeter, nicht Zentimeter.&ldquo;</blockquote>
+    <div class="assessment partial">
+      <strong>Bewertung der Anweisung:</strong>
+      F klar definiert. Bei G Einheitenfehler (cm statt mm) &mdash; Selbstkorrektur nach Rückfrage der KI.
+      <em>Bemerkenswert:</em> Die KI hat die Inkonsistenz erkannt (25mm wäre außerhalb des 40mm-Profils) und nachgefragt.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>F&nbsp;=&nbsp;(E_x, E_y&nbsp;+&nbsp;2.5) &mdash; 2,5mm über E.
+    <br>G&nbsp;=&nbsp;(E_x&nbsp;+&nbsp;2.5, E_y) &mdash; 2,5mm rechts von E.
+    <br>Später: D_x an G_x angepasst (D exakt unterhalb von G).</p>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Korrekt. Einheitenfehler wurde erkannt und höflich nachgefragt.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 14: Verbindung D&ndash;G und iterative Höhen-Anpassung</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Verbinde D und G mit der grünen Linie. Entferne die Verbindung von D nach C.&ldquo;
+    <br>&bdquo;Verringere die Höhe h auf m des Dreiecks ADM um 5mm.&ldquo;
+    <br>&bdquo;Um weitere 4mm verringern.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Klare iterative Anpassung. Der Mensch nutzt visuelle Rückmeldung, um den Kreisbogen
+      schrittweise zu optimieren (h: 15&nbsp;&rarr;&nbsp;10&nbsp;&rarr;&nbsp;6mm).
+      Das ist typisches CAD-Verhalten: Parameter tweaken bis es passt.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Grüne Linie D&rarr;G auf allen 8 Positionen.
+    <br>Höhe h iterativ angepasst, M und Kreisbogen jeweils automatisch neu berechnet.
+    <br>Alle abhängigen Elemente (M-Position, Radius, Bogenform) werden korrekt aktualisiert.</p>
+    <div class="step-img">
+      <img src="schritte/schritt09_punkte_ABCDEFGM_overlay.svg" width="250">
+      <figcaption>Alle Punkte: A, B, C, D, E, F, G, M</figcaption>
+    </div>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Parametrische Abhängigkeiten korrekt umgesetzt. Die Dreieckskonstruktion garantiert,
+      dass M immer auf der Mittelsenkrechten von AD liegt und |MA|&nbsp;=&nbsp;|MD| gilt.
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Iteratives Arbeiten braucht parametrische Modelle</h3>
+<p>Die schrittweise Anpassung der Höhe h (15&rarr;10&rarr;6) zeigt:
+Geometrische Konstruktionen müssen <strong>parametrisch</strong> aufgebaut sein,
+damit Änderungen an einem Wert alle abhängigen Elemente automatisch aktualisieren.
+<br>Das ist eine weitere Kernkompetenz: <strong>Konstruktionen so aufbauen,
+dass sie robust gegenüber Parameteränderungen sind.</strong></p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 15: Kreisbogen G&ndash;F und Linie F&ndash;E</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Wir führen die grüne Linie weiter als Kreisbogen zwischen G und F. Der Kreismittelpunkt ist E.&ldquo;
+    <br>&bdquo;Das war genau seitenverkehrt.&ldquo; (Korrektur der Bogenrichtung)
+    <br>&bdquo;Nun noch eine grüne Verbindung F nach E.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Kreisbogen über drei Punkte (G, F auf der Kreislinie, E als Mittelpunkt) ist eindeutig definiert.
+      Die Bogenrichtung war beim ersten Versuch falsch &mdash; der Mensch erkannte dies visuell sofort.
+      <em>Erkenntnis:</em> &bdquo;Kreisbogen von G nach F&ldquo; definiert nicht eindeutig, <em>welcher</em> der zwei möglichen Bögen gemeint ist.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Kreisbogen G&rarr;F mit Mittelpunkt E, Radius |EG|&nbsp;=&nbsp;|EF|&nbsp;=&nbsp;2,5mm (Viertelkreis).
+    <br>1. Versuch: falscher Sweep (nach innen statt außen) &rarr; korrigiert.
+    <br>Gerade F&rarr;E hinzugefügt.
+    <br>Grüner Linienzug komplett: <strong>A&nbsp;&#8978;&nbsp;D&nbsp;&rarr;&nbsp;G&nbsp;&#8978;&nbsp;F&nbsp;&rarr;&nbsp;E</strong></p>
+    <div class="step-img"><img src="schritte/schritt08_boegen_overlay.svg">
+    <figcaption>Rot: bestehende Kontur (gerade A&rarr;E). Grün: geplanter Ersatz mit Bögen.</figcaption></div>
+    <div class="assessment partial">
+      <strong>Bewertung der Umsetzung:</strong>
+      Bogenrichtung erforderte einen Korrekturversuch. SVG-Arc sweep-flag ist nicht intuitiv.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 16: Integration der Bögen in die Kontur (fehlgeschlagen)</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Kannst du das versuchen, ohne dass du den Rest wieder abschießt?&ldquo;
+    <br>(Nach dem Versuch:) &bdquo;Bitte wieder zurück, da ist ein völliges Chaos entstanden.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Der Mensch antizipiert das Problem korrekt (&bdquo;ohne abschießen&ldquo;) und reagiert schnell mit Rücknahme.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>Fehlgeschlagen.</strong> Versuch, die Kreisbögen als Punktlisten in das Shapely-Polygon einzubauen.
+    <br>Problem: Die Bogen-Approximation erzeugte ein selbstschneidendes Polygon, das bei der
+    4-fach-Rotation und Boolean-Differenz zu Topologiefehlern führte.
+    <br><strong>Rückgängig gemacht.</strong> Grüne Overlay-Linien bleiben als Vorschau bestehen.</p>
+    <div class="assessment error">
+      <strong>Bewertung der Umsetzung:</strong>
+      Dritter fehlgeschlagener Integrationsversuch. Shapely kann Kreisbögen nur als Polygon-Approximation darstellen,
+      was bei komplexen Boolean-Operationen zu numerischen Instabilitäten führt.
+      <br><em>Fazit:</em> Für die Integration brauchen wir entweder ein echtes CAD-Tool (CadQuery/FreeCAD)
+      oder den Weg über direkte SVG-Manipulation (ohne Shapely-Geometrie).
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Grenzen der Werkzeugkette</h3>
+<p>Die Konstruktion ist konzeptionell abgeschlossen &mdash; alle Punkte, Bögen und Linien sind definiert.
+Die <strong>Darstellung als Overlay</strong> (grün auf rot) funktioniert einwandfrei.
+Die <strong>Integration in die Geometrie</strong> scheitert an Shapely's Limitierungen mit Kreisbögen.
+<br>Dies illustriert eine wichtige Lektion: <strong>Das richtige Werkzeug für die Aufgabe wählen</strong>
+ist eine Kernkompetenz. Shapely (GIS-Bibliothek) ist nicht für präzise CAD-Konstruktionen gemacht.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 17&ndash;20: Der Kampf um den Kreisbogen D&ndash;A</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>
+    Schritt 17: &bdquo;Der grüne Linienzug soll auf allen 8 Stellen sein, gespiegelt.&ldquo;<br>
+    Schritt 18: &bdquo;Kannst du das versuchen, ohne den Rest abzuschießen?&ldquo; (Kreisbögen in rote Kontur integrieren)<br>
+    Schritt 19: &bdquo;Geh anders vor: Verbindung A-F-E statt A-E&ldquo; (schrittweiser Aufbau)<br>
+    Schritt 20: &bdquo;G-D-A statt G-A, dann D-A durch Bogen ersetzen&ldquo;
+    </blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Der Mensch erkennt das Muster: schrittweise vorgehen, jeweils eine Gerade durch den nächsten
+      Konstruktionsabschnitt ersetzen, visuell prüfen, dann weiter. Sehr systematisch.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>4 Fehlversuche bei der Bogen-Integration:</strong></p>
+    <div class="step-img" style="display:flex; gap:0.5em; flex-wrap:wrap; justify-content:center;">
+      <div><img src="schritte/schritt17_FAIL_bogen_integration_overlay.svg" width="180"><figcaption>Versuch 1: Topologiefehler</figcaption></div>
+      <div><img src="schritte/schritt18_FAIL_v2_svg_overlay.svg" width="180"><figcaption>Versuch 2: Bögen falsche Richtung</figcaption></div>
+      <div><img src="schritte/schritt19_FAIL_bogen_falsche_seite_overlay.svg" width="180"><figcaption>Versuch 3: Nur halbe Seite</figcaption></div>
+    </div>
+    <ol>
+      <li><strong>Versuch 1:</strong> Bogen-Punkte direkt ins Shapely-Polygon &rarr; Topologiefehler bei 4-fach-Rotation</li>
+      <li><strong>Versuch 2:</strong> Kompletter SVG-Neuaufbau (v2.py) &rarr; Bögen in falscher Richtung, Nutboden verschwunden</li>
+      <li><strong>Versuch 3:</strong> Nur rechte Seite obere Nut mit Bogen-Punktliste &rarr; visuell falsch</li>
+      <li><strong>Versuch 4:</strong> Bogen D&rarr;A mit gleicher Berechnung wie grün &rarr; visuell Durcheinander</li>
+    </ol>
+    <p><strong>Erfolgreiche Zwischenschritte:</strong></p>
+    <ul>
+      <li>A&rarr;F&rarr;E statt A&rarr;E &mdash; funktionierte (mit <code>make_valid</code>)</li>
+      <li>G&rarr;D&rarr;A statt G&rarr;A &mdash; funktionierte</li>
+      <li>Viertelkreis G&#8978;F in Shapely-Punktliste &mdash; funktionierte</li>
+    </ul>
+    <p><strong>Kernproblem:</strong> Shapely approximiert Kreisbögen als Polygone mit vielen Punkten.
+    Bei 4-fach-Rotation und Boolean-Differenz entstehen numerische Instabilitäten
+    (Self-Intersections, Topologiefehler). Der kleine Viertelkreis G&#8978;F (r=2.5mm) ging noch,
+    der große Bogen A&#8978;D (r&asymp;7mm) nicht.</p>
+    <div class="assessment error">
+      <strong>Bewertung der Umsetzung:</strong>
+      Systematisches Scheitern an den Grenzen des Werkzeugs.
+      Jeder Einzelschritt war logisch korrekt, aber die Kombination
+      aus Polygon-Approximation + Boolean-Operationen ist numerisch instabil.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 21: Durchbruch &mdash; SVG-Level Arc Replacement</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Der Bogen ist auf grün ja schon da. Es müsste nur rot, genau derselbe Bogen, sein.
+    Kannst du mit der Vorschrift nicht anfangen, welche den grünen Bogen erzeugt?&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      <strong>Entscheidender Hinweis!</strong> Der Mensch erkennt: das Problem liegt nicht in der Mathematik
+      (der grüne Bogen ist korrekt), sondern in der <em>Werkzeugkette</em>.
+      Statt Shapely zu zwingen, Bögen zu verstehen, sollte die KI den Bogen
+      auf SVG-Ebene einsetzen &mdash; dort wo er bereits funktioniert.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>Lösung:</strong> Shapely behält gerade Linien D&rarr;A.
+    Im SVG-Export erkennt <code>coords_to_svg_path()</code> jedes D&rarr;A-Punktpaar
+    und ersetzt den SVG-Befehl <code>L</code> (Linie) durch <code>A</code> (Arc)
+    mit dem vorberechneten Radius r<sub>AD</sub>.
+    <br>Die Shapely-Geometrie wird nie verändert &mdash; nur die <em>Darstellung</em>.</p>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Elegante Lösung. Trennung von Geometrie-Engine (Shapely, gerade Linien)
+      und Darstellung (SVG, echte Kreisbögen). Kein Topologiefehler möglich.
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Trennung von Modell und Darstellung</h3>
+<p>Nach 4 Fehlversuchen kam der Durchbruch durch einen <strong>Perspektivwechsel des Menschen</strong>:
+&bdquo;Der grüne Bogen funktioniert doch schon &mdash; mach einfach das Gleiche in rot.&ldquo;
+<br>Die KI hatte versucht, den Bogen ins <em>Geometrie-Modell</em> (Shapely) zu integrieren.
+Die Lösung war, ihn nur in der <em>Darstellung</em> (SVG) einzusetzen.
+<br><strong>Manchmal ist die beste Lösung, das Problem auf einer anderen Ebene zu lösen.</strong>
+Das erfordert Verständnis für die Architektur des Systems &mdash; eine Kompetenz,
+die weder rein mathematisch noch rein technisch ist.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 22&ndash;28: Der Kampf um die R1-Rundung bei C</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>
+    Schritt 22: &bdquo;Entferne M, und dann eine Rundung von 1mm beim Punkt C.&ldquo;<br>
+    Schritt 23: &bdquo;Das sind Fadenkreuze, keine Rundungen. Geh zurück.&ldquo;<br>
+    Schritt 24: &bdquo;Versuche einen anderen Weg.&ldquo; (Shapely-Punktliste statt SVG-Arc)<br>
+    Schritt 25: &bdquo;Da ist ein neuer Punkt entstanden, den sollte es nicht geben.&ldquo;<br>
+    Schritt 26: &bdquo;Komplettes Desaster. Zurück.&ldquo;<br>
+    Schritt 27: &bdquo;Von C einen mm nach oben = P, einen mm nach rechts = Q. Spiegle C an PQ = C'.
+    Erstelle Viertelkreis P&rarr;Q um C'.&ldquo;<br>
+    Schritt 28: &bdquo;Kreis geht in die falsche Richtung. Immer noch falsch. Sackgasse. Zurückbauen.&ldquo;
+    </blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Schritt 27 war mathematisch brillant: Der Mensch definiert den Kreismittelpunkt C'
+      durch <strong>Spiegelung von C an der Achse PQ</strong> &mdash; eine elegante geometrische Konstruktion.
+      C' = (5, 16.5) liegt korrekt. Das Problem lag nicht an der Mathematik,
+      sondern an der SVG-Arc-Darstellung (sweep-flag und large-arc-flag Kombinatorik).
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>7 Fehlversuche bei R1 an C:</strong></p>
+    <div class="step-img" style="display:flex; gap:0.5em; flex-wrap:wrap; justify-content:center;">
+      <div><img src="schritte/schritt22_FAIL_c_sweep1_overlay.svg" width="150"><figcaption>Fadenkreuz</figcaption></div>
+      <div><img src="schritte/schritt25_FAIL_c_extra_punkt_overlay.svg" width="150"><figcaption>Konkav statt konvex</figcaption></div>
+      <div><img src="schritte/schritt29_FAIL_c_konkav_overlay.svg" width="150"><figcaption>Langsam verstehen wir uns.</figcaption></div>
+    </div>
+    <ol>
+      <li>SVG-Arc-Replacement bei C-Punkt &rarr; &bdquo;Fadenkreuz&ldquo; (ganzer Kreis statt Viertel)</li>
+      <li>Sweep-flag gewechselt &rarr; Rundung weg, Fadenkreuz bleibt</li>
+      <li>Shapely-Punktliste für Bogen &rarr; Richtung falsch</li>
+      <li>Schlitz verkürzt für nahtlosen Übergang &rarr; Desaster</li>
+      <li>C'-Spiegelung, Bogen als Shapely-Punkte &rarr; 270&deg; statt 90&deg;</li>
+      <li>Richtung umgedreht + SVG-Arc-Replacement &rarr; falscher Bogen</li>
+      <li>large-arc-flag gewechselt &rarr; immer noch falsch</li>
+    </ol>
+    <p><strong>Kernproblem:</strong> Der SVG-Arc-Befehl hat 4 Varianten (2 sweep &times; 2 large-arc),
+    und bei 8-facher Spiegelung/Rotation ergeben sich 32 Kombinationen.
+    Die KI hat systematisch alle falschen Varianten durchprobiert, ohne die richtige zu finden.</p>
+    <div class="assessment error">
+      <strong>Bewertung der Umsetzung:</strong>
+      Systematisches Versagen trotz korrekter Mathematik. Das Problem ist <em>kombinatorisch</em>:
+      Die SVG-Arc-Flags (sweep, large-arc) interagieren mit Spiegelung und Rotation auf nicht-intuitive Weise.
+      Jeder Korrekturversuch änderte nur einen Parameter, ohne das Gesamtbild zu überprüfen.
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Kombinatorische Fallen bei Spiegelung</h3>
+<p>Der SVG-Arc-Befehl (<code>A rx,ry rotation large-arc-flag,sweep-flag x,y</code>)
+hat zwei Booleans (large-arc, sweep), die zusammen 4 verschiedene Bögen beschreiben.
+Bei 4-facher Rotation &times; 2-facher Spiegelung ergeben sich 32 Möglichkeiten &mdash;
+nur eine davon ist korrekt.
+<br>Die KI konnte die richtige Kombination nicht finden, weil sie die Flags
+<strong>einzeln</strong> änderte statt das geometrische Gesamtbild zu analysieren.
+<br><strong>Lektion:</strong> Bei kombinatorischen Problemen ist systematisches Durchprobieren
+weniger effektiv als geometrisches Verständnis.
+Ein Mensch hätte den Bogen <em>einmal</em> auf Papier gezeichnet und die Flags daraus abgeleitet.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 29: R1-Rundung bei C &mdash; Erfolg!</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Von Punkt C einen Millimeter nach oben und einen Millimeter nach rechts, machst du zwei neue Punkte P und Q.
+    Spiegle C an der Achse PQ &rarr; C'. Erstelle Viertelkreis P&rarr;Q um C'.&ldquo;
+    <br>Nach mehreren Fehlversuchen mit Shapely-Punktlisten und SVG-Arcs:
+    <br>&bdquo;Ersetze C im Polygon durch P und Q, dann im SVG-Export P&rarr;Q durch Arc ersetzen &mdash; genau wie bei D&rarr;A.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Der Mensch definierte P, Q, C' geometrisch präzise. Nach 7 Fehlversuchen half der entscheidende Hinweis:
+      <strong>denselben SVG-Replacement-Ansatz wie bei D&harr;A verwenden</strong>.
+      Die Methode war bereits erprobt &mdash; der Mensch erkannte die Analogie.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>1. C im Hinterschnitt-Polygon durch P und Q ersetzt (Shapely sieht nur geraden Knick)
+    <br>2. Im SVG-Export: P&rarr;Q und Q&rarr;P Paare erkennen, durch <code>A 1.0,1.0 ...</code> ersetzen
+    <br>3. Sweep-Flag: erster Versuch falsch (konkav statt konvex), <strong>zweiter Versuch korrekt</strong>
+    <br>Funktioniert auf allen 8 Stellen.</p>
+    <div class="step-img"><img src="schritte/schritt29_c_erfolg_overlay.svg" width="300">
+    <figcaption>R1-Rundung bei C &mdash; korrekt auf allen 8 Stellen</figcaption></div>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Bewährtes Pattern (SVG-Level-Replacement) erfolgreich wiederverwendet.
+      Nur ein Sweep-Fehler &mdash; deutliche Verbesserung gegenüber den 7 Fehlversuchen zuvor.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 30: R0.5-Rundung bei E</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Um den Punkt E herum ebenfalls eine Rundung mit 0,5mm.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Kurz und klar. Gleicher 90&deg;-Knick wie bei C, gleiche Methode anwendbar.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Punkte R (0.5mm über E) und S (0.5mm links von E) definiert.
+    E im Polygon durch R und S ersetzt. SVG-Arc-Replacement für R/S.
+    <br>Erster Versuch: S rechts von E (falsch) &rarr; korrigiert auf links.
+    <br>Sweep einmal falsch &rarr; korrigiert. <strong>Dritter Versuch korrekt.</strong></p>
+    <div class="step-img"><img src="schritte/schritt14_e_rundung_overlay.svg" width="250"></div>
+    <div class="assessment partial">
+      <strong>Bewertung der Umsetzung:</strong>
+      Richtung von S (links/rechts von E) musste korrigiert werden &mdash;
+      die KI hat die Laufrichtung der Kontur (Q&rarr;E, also von links nach rechts) nicht sofort richtig analysiert.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 31: R0.5-Rundung bei F (Gerade &rarr; Kreisbogen)</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Bei F haben wir eine innere 90-Grad-Wendung, die geht schon in einen Kreisbogen über.
+    Wir bräuchten bei F eine innere Rundung in die andere Rundung hinein.
+    Keine Ahnung, wie ich das in Real Life konstruieren würde.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Ehrliche Reflexion: der Mensch erkennt, dass &bdquo;Verrundung zwischen Gerade und Kreisbogen&ldquo;
+      eine nicht-triviale Konstruktionsaufgabe ist. Die Frage &bdquo;wie würde man das von Hand konstruieren?&ldquo;
+      ist eine <strong>Kernfrage der Geometriedidaktik</strong>.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>Ansatz:</strong> Gerade (R&rarr;F) und Bogen (G&#8978;F) jeweils um 0.5mm kürzen.
+    <br>T = neuer Punkt 0.5mm unter F (auf der Geraden)
+    <br>U = neuer Punkt 0.5mm vor F auf dem G&#8978;F-Bogen (berechnet über Winkelinkrement: &Delta;&theta; = 0.5/R)
+    <br>SVG-Arc-Replacement für T&harr;U.
+    <br><strong>Erster Versuch korrekt!</strong></p>
+    <p><em>(Zwischenbild leider nicht gespeichert &mdash; Lektion: Snapshots bei jedem Schritt sichern!)</em></p>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Erstmals eine komplexe Rundung auf Anhieb korrekt! Die Berechnung von U
+      (Punkt auf einem Kreisbogen in definiertem Abstand vom Endpunkt)
+      erfordert Bogenlängen-Parametrisierung: <code>&Delta;&theta; = s / r</code>.
+      Der bewährte SVG-Replacement-Ansatz hat sich ein drittes Mal bewährt.
+    </div>
+  </div>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Verrundung Gerade&ndash;Kreisbogen</h3>
+<p>Die Konstruktion einer Verrundung zwischen einer Geraden und einem Kreisbogen
+ist in der klassischen DG eine anspruchsvolle Aufgabe.
+Der Fillet-Mittelpunkt liegt auf dem <strong>Abstand r<sub>fillet</sub></strong> von der Geraden
+<em>und</em> auf dem <strong>Abstand R<sub>bogen</sub> + r<sub>fillet</sub></strong> vom Bogenmittelpunkt
+(bei innerer Verrundung addieren sich die Radien).
+<br>In unserem Fall war die Geometrie glücklicherweise einfach genug (90&deg;, F exakt über E),
+sodass eine Approximation über Bogenlängen-Parametrisierung genügt hat.
+<br><strong>Die Frage des Menschen &bdquo;wie würde man das von Hand konstruieren?&ldquo;
+zeigt, dass geometrisches Grundverständnis auch bei KI-Nutzung unverzichtbar bleibt.</strong></p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 32: Eck-Quadrate (Inseln)</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;In jede der vier Ecken ein Quadrat mit Seitenlänge 6,5mm, Abstand 2mm von der Außenkante.
+    Eckenradius 0,5mm, nur an der Außenecke 2mm.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Vollständig definiert: Position, Größe, Radien, Sonderfall für die Außenecke.
+      Abstand zuerst 3mm, visuell als zu groß erkannt, auf 2mm korrigiert.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>4 Quadrate als Boolean-Differenz (wie die Bohrung).
+    <br>Unterschiedliche Radien: R0.5 global via <code>buffer(-0.5).buffer(0.5)</code>,
+    dann Außenecke durch Clip-and-Replace mit R2-Version ersetzt.
+    <br>Abstand-Korrektur (3mm &rarr; 2mm) sofort umgesetzt.
+    <br><strong>Zwei Versuche, einer für den Abstand.</strong></p>
+    <div class="step-img">
+      <img src="aufgabe01_overlay.svg" width="300">
+      <figcaption>Eck-Quadrate eingefügt &mdash; interessant: die Aussparungen liegen alle ca. 1mm zu weit innen.</figcaption>
+    </div>
+    <div class="assessment ok">
+      <strong>Bewertung der Umsetzung:</strong>
+      Sauber gelöst. Die Kombination aus globaler und selektiver Verrundung
+      (unterschiedliche Radien an verschiedenen Ecken) wurde kreativ über
+      Clip-and-Replace gelöst &mdash; ein Shapely-spezifischer Workaround.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 33: Schraffur und Varianten</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Schraffiere das Innere. Verdopple die Schraffurlinien. Dann ohne Punkte als Final-Schnitt. Und eine reine Kontur als path.&ldquo;</blockquote>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>SVG-Pattern für 45&deg;-Schraffur. Parametrisierte Ausgabe: mit/ohne Schraffur, mit/ohne Labels, variable Schraffurdichte.</p>
+  </div>
+</div>
+
+<h2>Schritt 34: Technische Zeichnung A4 mit DIN-Bemaßung</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;A4-Rahmen mit Schriftfeld. M 2:1 bemaßt links, M 1:1 Schnitt rechts. Radien verteilen. Beschriftungen horizontal, außerhalb der Zeichnung.&ldquo;</blockquote>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>A4-Querformat, Schriftfeld nach EN ISO 7200 (vereinfacht), vollständige Bemaßung, Mittellinien.
+    Iterativ verbessert: Textpositionierung, Radien-Verteilung auf verschiedene Ecken.</p>
+    <div class="step-img"><img src="aufgabe01_path_formal.svg" width="500">
+    <figcaption>Technische Zeichnung A4 (klicken für Vollbild)</figcaption></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 35: STL für 3D-Drucker</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Stelle eine Datei für den 3D-Drucker her, 10cm hoch.&ldquo;
+    <br>&bdquo;Die Rundungen an den inneren Teilen fehlen komplett!&ldquo;</blockquote>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>1. Versuch (FAIL):</strong> STL verwendet Shapely-Geometrie, in der D&rarr;A noch gerade Linien sind
+    (der Bogen existierte nur als SVG-Darstellung). Alle inneren Rundungen fehlten.</p>
+    <div class="step-img"><img src="3D Druck1.png" width="350">
+    <figcaption>FAIL: 3D-Druck-Vorschau ohne innere Rundungen (Bambu Studio)</figcaption></div>
+    <div class="step-img"><img src="steroids.png" width="350"><figcaption>FAIL: Bögen invertiert - &bdquo;Aluminium on Steroids&ldquo;</figcaption></div>
+    <p><strong>2. Versuch:</strong> Alle Bögen als Punktlisten in Shapely &rarr; Bögen invertiert (&bdquo;Steroids&ldquo;).</p>
+    <p><strong>3. Versuch (Erfolg):</strong> SVG-Pfad direkt parsen, sweep-flag bei Y-Inversion invertieren.</p>
+    <div class="step-img"><img src="donePrint.png" width="350">
+    <figcaption>Erfolg: Alle Rundungen korrekt (Bambu Studio)</figcaption></div>
+    <div class="assessment error">
+      <strong>Bewertung:</strong>
+      Grundlegendes Architekturproblem: die SVG-Arc-Replacement-Strategie funktioniert nur für die <em>Darstellung</em>,
+      nicht für den 3D-Export. Für STL müssen die Bögen als Polygon-Approximation in Shapely vorhanden sein.
+      <br><em>Erkenntnis:</em> <strong>Trennung von Modell und Darstellung hat Konsequenzen für den Export.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 36: TPU-Abschlusskappe</h2>
+<div class="step"><div class="human"><div class="label">Mensch</div>
+<blockquote>Gummi-Abschlusskappe für Tischfuß. 5mm hoch, 3mm Rand rings herum (46×46mm). Alle Vertiefungen ausfüllen für Formschluss.</blockquote></div>
+<div class="ai"><div class="label">KI-Umsetzung</div>
+<p>Basis (2mm): volle 46×46 Fläche. Verzahnung (3mm): füllt exakt die Hohlräume des Profils. SVG + STL aus bestehendem Profil-SVG abgeleitet.</p>
+<div class="step-img"><img src="aufgabe02_formal_abschlussTPU.svg" width="400"></div>
+<div class="step-img"><img src="erfolgtFuß.png" width="400">
+<figcaption>Erfolg: TPU-Abschlusskappe in Bambu Studio</figcaption></div>
+</div></div>
+
+<!-- ============================================================ -->
+<h2>Schritt 37: Schrägriss und Dreitafelprojektion</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Zeichne einen Schrägriss des Objekts. In einem weiteren Normzeichnungsblatt Grund-, Auf- und Kreuzriss, jeweils mit 10cm Höhe extrudiert.&ldquo;
+    <br>&bdquo;Beim Schrägriss fehlen viele Linien.&ldquo; &rarr; Zurücksetzen auf Vorder-/Rückseite.
+    <br>&bdquo;Die Ordner müssen auch die unsichtbaren Kanten erreichen.&ldquo;
+    <br>&bdquo;Die inneren Kanten als gestrichelte Linien im Grund- und Kreuzriss.&ldquo;</blockquote>
+    <div class="assessment ok">
+      <strong>Bewertung der Anweisung:</strong>
+      Schrittweiser Aufbau: erst Grundstruktur, dann Details.
+      Der Mensch erkennt sofort fehlende Elemente (Ordner, verdeckte Kanten) und korrigiert systematisch.
+    </div>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p><strong>Schrägriss:</strong> Kavalierprojektion, iterativ aufgebaut:</p>
+    <ol>
+      <li>Vorder- und Rückseite (45°, Verkürzung 0.5) &mdash; erster Versuch mit 966 Linien = Chaos</li>
+      <li>Umhüllende: Silhouettenlinien an den R4.5-Tangentenpunkten (H, H')</li>
+      <li>Nut-Eintrittskanten (B→B'): erst am falschen Eckpunkt, dann am R2-Tangentenpunkt korrigiert</li>
+      <li>Gerade Außenstrecken (Rundung↔Nut) auf der Hinterseite</li>
+      <li>Winkel von 45° auf <strong>30°</strong> geändert (weniger Überlappung)</li>
+      <li>R2-Silhouettenpunkte: Tangente an Zylinderfläche in 30°-Blickrichtung (U)</li>
+      <li>R2-Bogen U→obere Kante und R4.5-Bögen bei H/H' auf der Hinterseite</li>
+      <li>Sichtbarkeitsanalyse: oben+rechts durchgezogen, unten+links gestrichelt</li>
+    </ol>
+    <p><em>Methodische Erkenntnis:</em> Der Schrägriss verbindet <strong>Darstellende Geometrie</strong>
+    (Sichtbarkeit, Silhouetten, Tangenten) mit <strong>analytischer Geometrie</strong>
+    (Vektorrechnung, Projektionsformeln). Die KI berechnet, was der Mensch konstruiert &mdash;
+    braucht aber dasselbe geometrische Verständnis.</p>
+    <p><strong>Dreitafelprojektion:</strong> Aufriss (Schnitt mit Schraffur), Grundriss, Kreuzriss.
+    Iterativ verbessert: Koordinatenachsen, Ordner (durchgezogen, sehr fein), 45°-Ordner mit Viertelkreisbögen,
+    verdeckte Kanten (Bohrung, Pockets, Hinterschnitte) als gestrichelte Linien.</p>
+    <div class="step-img" style="display:flex; gap:1em; justify-content:center; flex-wrap:wrap;">
+      <div><img src="aufgabe03_schraegriss.svg" width="350" style="border:1px solid #ddd;">
+      <figcaption>Schrägriss (Kavalierprojektion)</figcaption></div>
+      <div><img src="aufgabe03_dreitafel.svg" width="350" style="border:1px solid #ddd;">
+      <figcaption>Dreitafelprojektion mit Ordnern</figcaption></div>
+    </div>
+    <div class="assessment partial">
+      <strong>Bewertung der Umsetzung:</strong>
+      Dreitafelprojektion gelungen nach iterativer Verbesserung.
+      Schrägriss noch unvollständig (nur Vorder-/Rückseite, Verbindungskanten fehlen noch).
+      <br><em>Erkenntnis:</em> Bei komplexen Profilen ist die Sichtbarkeitsanalyse für den Schrägriss
+      eine nichttriviale Aufgabe &mdash; man muss entscheiden, welche Kanten von vorn verdeckt werden.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Schritt 38: Pyramide (Aufgabe 4)</h2>
+<div class="step">
+  <div class="human">
+    <div class="label">Mensch</div>
+    <blockquote>&bdquo;Pyramide mit quadratischer Grundfläche, Seitenlänge 5cm, Höhe 7cm.
+    Schrägriss auf einem Arbeitsblatt, Grund-/Auf-/Kreuzriss auf einem zweiten.&ldquo;
+    <br>&bdquo;Grundriss: Diagonalen nicht strichliert &mdash; das sind sichtbare Seitenkanten von oben.&ldquo;
+    <br>&bdquo;Schrägriss: Hintere Basiskanten sind unsichtbar, also strichlieren.&ldquo;
+    <br>&bdquo;Die Spitze muss im Aufriss und Kreuzriss mit einem Ordner verbunden sein.&ldquo;</blockquote>
+  </div>
+  <div class="ai">
+    <div class="label">KI-Umsetzung</div>
+    <p>Kavalierprojektion (45°, Verkürzung 0.5) und Dreitafelprojektion.
+    Korrekturen: Grundriss-Diagonalen durchgezogen, hintere Basiskanten gestrichelt,
+    Ordner für Pyramidenspitze ergänzt.</p>
+    <div class="step-img" style="display:flex; gap:1em; justify-content:center; flex-wrap:wrap;">
+      <div><img src="aufgabe04_pyramide_schraegriss.svg" width="300" style="border:1px solid #ddd;">
+      <figcaption>Schrägriss</figcaption></div>
+      <div><img src="aufgabe04_pyramide_dreitafel.svg" width="300" style="border:1px solid #ddd;">
+      <figcaption>Dreitafelprojektion</figcaption></div>
+    </div>
+    <div class="assessment partial">
+      <strong>Bewertung:</strong>
+      Grundstruktur auf Anhieb korrekt. Drei Korrekturrunden nötig:
+      Sichtbarkeit der Diagonalen im Grundriss, Strichlierung der hinteren Basiskanten,
+      Ordner-Verbindung der Pyramidenspitze.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Aufgabensammlung: GZ und DG</h2>
+<div class="insight">
+<h3>20 Standardaufgaben aus dem österreichischen Lehrplan</h3>
+<p>Während der Mensch Musik macht, hat die KI selbstständig je 10 Aufgaben
+aus dem <strong>Geometrischen Zeichnen</strong> (Sek I) und der <strong>Darstellenden Geometrie</strong> (Oberstufe)
+recherchiert, gelöst und selbst bewertet.</p>
+
+<table>
+<tr><th>Bereich</th><th>Aufgaben</th><th>Korrekt</th><th>Teilweise</th><th>Details</th></tr>
+<tr><td>GZ (Sek I)</td><td>10</td><td>8</td><td>2</td><td><a href="gz/gz_zusammenfassung.html">Zusammenfassung</a></td></tr>
+<tr><td>DG (Oberstufe)</td><td>10</td><td>10</td><td>0</td><td><a href="dg/dg_zusammenfassung.html">Zusammenfassung</a></td></tr>
+</table>
+
+<h4>GZ-Aufgaben (Geometrisches Zeichnen, 3./4. Klasse)</h4>
+<div class="step-img" style="display:flex; gap:0.5em; flex-wrap:wrap; justify-content:center;">
+<div><img src="gz/aufgabe_01_dreitafelprojektion.svg" width="140"><figcaption>1. Dreitafel Quader</figcaption></div>
+<div><img src="gz/aufgabe_02_schraegriss_quader.svg" width="140"><figcaption>2. Schrägriss</figcaption></div>
+<div><img src="gz/aufgabe_03_normalriss_pyramide.svg" width="140"><figcaption>3. Pyramide</figcaption></div>
+<div><img src="gz/aufgabe_04_abwicklung_wuerfel.svg" width="140"><figcaption>4. Würfel-Netz</figcaption></div>
+<div><img src="gz/aufgabe_05_abwicklung_zylinder.svg" width="140"><figcaption>5. Zylinder-Netz</figcaption></div>
+<div><img src="gz/aufgabe_06_parallelprojektion_prisma.svg" width="140"><figcaption>6. Prisma</figcaption></div>
+<div><img src="gz/aufgabe_07_durchdringung.svg" width="140"><figcaption>7. Durchdringung</figcaption></div>
+<div><img src="gz/aufgabe_08_ebenenschnitt.svg" width="140"><figcaption>8. Ebenenschnitt</figcaption></div>
+<div><img src="gz/aufgabe_09_kreis_schraegriss.svg" width="140"><figcaption>9. Kreis/Ellipse</figcaption></div>
+<div><img src="gz/aufgabe_10_zusammengesetzter_koerper.svg" width="140"><figcaption>10. Verbundkörper</figcaption></div>
+</div>
+
+<h4>DG-Aufgaben (Darstellende Geometrie, 7./8. Klasse)</h4>
+<div class="step-img" style="display:flex; gap:0.5em; flex-wrap:wrap; justify-content:center;">
+<div><img src="dg/dg_01_gerade.svg" width="140"><figcaption>1. Gerade</figcaption></div>
+<div><img src="dg/dg_02_ebene_spurgeraden.svg" width="140"><figcaption>2. Ebene</figcaption></div>
+<div><img src="dg/dg_03_ellipse_zylinder.svg" width="140"><figcaption>3. Ellipse</figcaption></div>
+<div><img src="dg/dg_04_parabel_kegel.svg" width="140"><figcaption>4. Parabel</figcaption></div>
+<div><img src="dg/dg_05_schatten_quader.svg" width="140"><figcaption>5. Schatten</figcaption></div>
+<div><img src="dg/dg_06_durchdringung_zylinder.svg" width="140"><figcaption>6. Zyl.-Durchdr.</figcaption></div>
+<div><img src="dg/dg_07_isometrie_l_profil.svg" width="140"><figcaption>7. Isometrie</figcaption></div>
+<div><img src="dg/dg_08_zentralprojektion.svg" width="140"><figcaption>8. Perspektive</figcaption></div>
+<div><img src="dg/dg_09_torus_aufriss.svg" width="140"><figcaption>9. Torus</figcaption></div>
+<div><img src="dg/dg_10_schraublinie.svg" width="140"><figcaption>10. Schraublinie</figcaption></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Endergebnis</h2>
+<div class="step-img" style="display:flex; gap:1em; justify-content:center; align-items:center; flex-wrap:wrap;">
+  <div>
+    <img src="aufgabe01_overlay.svg" width="280" style="border:1px solid #ddd; border-radius:4px;">
+    <figcaption>Overlay auf Vorlage</figcaption>
+  </div>
+  <div>
+    <img src="aufgabe01_Final-Schnitt.svg" width="280" style="border:1px solid #ddd; border-radius:4px;">
+    <figcaption>Fertiger Schnitt (schraffiert)</figcaption>
+  </div>
+  <div>
+    <img src="aufgabe01_path.svg" width="280" style="border:1px solid #ddd; border-radius:4px;">
+    <figcaption>Reine Kontur</figcaption>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Zusammenfassung</h2>
+
+<div class="insight">
+<h3>Was funktioniert gut?</h3>
+<ul>
+  <li><strong>Einfache Grundformen</strong> (Quadrat, Kreis, Rechteck) &mdash; kurze Anweisungen genügen</li>
+  <li><strong>Punkt-für-Punkt-Konstruktion</strong> &mdash; robustester Kommunikationsweg</li>
+  <li><strong>Symmetrie-Argumente</strong> &mdash; KI versteht &bdquo;auf allen vier Seiten spiegeln&ldquo;</li>
+  <li><strong>Schrittweises Vorgehen</strong> &mdash; kleine Änderungen sind sicher verifizierbar</li>
+</ul>
+
+<h3>Was ist problematisch?</h3>
+<ul>
+  <li><strong>Mehrdeutige Referenzen</strong> &mdash; &bdquo;diese Ecken&ldquo;, &bdquo;dort&ldquo; sind für KI schwer auflösbar</li>
+  <li><strong>Implizites Formwissen</strong> &mdash; KI assoziiert &bdquo;T-Nut&ldquo; mit Standardformen, nicht mit der gemeinten Variante</li>
+  <li><strong>Selektive Operationen</strong> &mdash; &bdquo;nur diese eine Ecke verrunden&ldquo; ist mit globalen Werkzeugen schwierig</li>
+  <li><strong>Rückgängig machen</strong> &mdash; kein echtes Undo; jeder Schritt muss manuell revertiert werden</li>
+  <li><strong>Kreisbögen in Polygonen</strong> &mdash; Shapely kennt keine echten Bögen, nur Polygon-Approximationen. Integration in bestehende Geometrie führte zu Topologiefehlern</li>
+  <li><strong>Einheitenfehler</strong> &mdash; cm vs. mm; KI konnte dies durch Plausibilitätsprüfung erkennen</li>
+</ul>
+
+<h3>Kernkompetenzen der Zukunft</h3>
+<table>
+  <tr><th>Kompetenz</th><th>Warum wichtig bei KI-Nutzung?</th></tr>
+  <tr><td>Präzise geometrische Fachsprache</td><td>&bdquo;Konvexe Ecke&ldquo; vs. &bdquo;konkave Ecke&ldquo; &mdash; KI braucht eindeutige Begriffe</td></tr>
+  <tr><td>Punkt-Referenzierung</td><td>Benannte Punkte vermeiden Mehrdeutigkeiten</td></tr>
+  <tr><td>Konstruktionsplanung</td><td>Komplexe Formen müssen in Einzelschritte zerlegt werden</td></tr>
+  <tr><td>Verifikation / visuelles Prüfen</td><td>KI-Output muss kritisch geprüft werden</td></tr>
+  <tr><td>Mathematische Modellierung</td><td>Kreisbogen über Dreieckskonstruktion definieren = höheres Denken</td></tr>
+  <tr><td>Fehlerdiagnose</td><td>&bdquo;Das stimmt nicht&ldquo; genügt nicht &mdash; man muss erklären <em>was</em> falsch ist</td></tr>
+  <tr><td>Iteratives Verfeinern</td><td>Parameter schrittweise anpassen und visuell prüfen (h: 15&rarr;10&rarr;6)</td></tr>
+  <tr><td>Einheiten-Bewusstsein</td><td>mm vs. cm &mdash; Größenordnungen müssen zum Kontext passen</td></tr>
+  <tr><td>Werkzeugkenntnis</td><td>Wissen, was das Werkzeug kann und was nicht (Shapely vs. echtes CAD)</td></tr>
+</table>
+</div>
+
+<h3>Statistik</h3>
+<table>
+  <tr><th>Metrik</th><th>Wert</th></tr>
+  <tr><td>Konstruktionsschritte gesamt</td><td>32</td></tr>
+  <tr><td>Davon auf Anhieb korrekt</td><td>15 (47%)</td></tr>
+  <tr><td>Fehlversuche / Rückschritte</td><td>17</td></tr>
+  <tr><td>Selbstkorrekturen des Menschen</td><td>3 (Quadrat 20&rarr;40, cm&rarr;mm, Tiefe 4&rarr;5)</td></tr>
+  <tr><td>KI-Fehler durch Mehrdeutigkeit</td><td>3 (Ecken-Referenzierung, T-Nut-Form, Bogenrichtung)</td></tr>
+  <tr><td>KI-Fehler durch Werkzeug-Limitierung</td><td>6 (selektive Verrundung, 4&times; Kreisbogen-Integration, 1&times; SVG-Neuaufbau)</td></tr>
+  <tr><td>Entscheidender Mensch-Hinweis</td><td>&bdquo;Der grüne Bogen funktioniert doch schon&ldquo; &rarr; Paradigmenwechsel</td></tr>
+  <tr><td>Punkte definiert</td><td>8 (A, B, C, D, E, F, G, M)</td></tr>
+  <tr><td>Kreisbögen in Kontur</td><td>1 von 2 (G&#8978;F via Shapely, D&#8978;A via SVG-Replacement)</td></tr>
+</table>
+
+<p class="meta">Generiert am 31.03.2026 &mdash; Mensch-KI-Kooperation mit Claude Code (Opus 4.6)</p>
+
+</body>
+</html>

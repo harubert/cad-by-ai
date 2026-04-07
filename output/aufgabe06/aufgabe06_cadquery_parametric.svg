@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="-25 -25 50 50" width="400" height="400">
+<rect x="-25" y="-25" width="50" height="50" fill="white"/>
+<line x1="15.500" y1="20.000" x2="4.000" y2="20.000" stroke="black" stroke-width="0.3"/>
+<line x1="15.500" y1="20.000" x2="20.000" y2="15.500" stroke="black" stroke-width="0.3"/>
+<line x1="20.000" y1="4.000" x2="20.000" y2="15.500" stroke="black" stroke-width="0.3"/>
+<line x1="4.000" y1="9.750" x2="4.000" y2="20.000" stroke="black" stroke-width="0.3"/>
+<line x1="20.000" y1="4.000" x2="9.750" y2="4.000" stroke="black" stroke-width="0.3"/>
+<line x1="6.000" y1="9.750" x2="4.000" y2="9.750" stroke="black" stroke-width="0.3"/>
+<line x1="9.750" y1="4.000" x2="9.750" y2="6.000" stroke="black" stroke-width="0.3"/>
+<line x1="6.000" y1="7.750" x2="6.000" y2="9.750" stroke="black" stroke-width="0.3"/>
+<line x1="9.750" y1="6.000" x2="7.750" y2="6.000" stroke="black" stroke-width="0.3"/>
+<line x1="-6.000" y1="7.750" x2="6.000" y2="7.750" stroke="black" stroke-width="0.3"/>
+<line x1="7.750" y1="6.000" x2="7.750" y2="-6.000" stroke="black" stroke-width="0.3"/>
+<line x1="-6.000" y1="9.750" x2="-6.000" y2="7.750" stroke="black" stroke-width="0.3"/>
+<line x1="7.750" y1="-6.000" x2="9.750" y2="-6.000" stroke="black" stroke-width="0.3"/>
+<line x1="-4.000" y1="9.750" x2="-6.000" y2="9.750" stroke="black" stroke-width="0.3"/>
+<line x1="9.750" y1="-6.000" x2="9.750" y2="-4.000" stroke="black" stroke-width="0.3"/>
+<line x1="-4.000" y1="20.000" x2="-4.000" y2="9.750" stroke="black" stroke-width="0.3"/>
+<line x1="9.750" y1="-4.000" x2="20.000" y2="-4.000" stroke="black" stroke-width="0.3"/>
+<line x1="-4.000" y1="20.000" x2="-15.500" y2="20.000" stroke="black" stroke-width="0.3"/>
+<line x1="20.000" y1="-15.500" x2="20.000" y2="-4.000" stroke="black" stroke-width="0.3"/>
+<line x1="-15.500" y1="20.000" x2="-20.000" y2="15.500" stroke="black" stroke-width="0.3"/>
+<line x1="15.500" y1="-20.000" x2="20.000" y2="-15.500" stroke="black" stroke-width="0.3"/>
+<line x1="-20.000" y1="15.500" x2="-20.000" y2="4.000" stroke="black" stroke-width="0.3"/>
+<line x1="4.000" y1="-20.000" x2="15.500" y2="-20.000" stroke="black" stroke-width="0.3"/>
+<line x1="-9.750" y1="4.000" x2="-20.000" y2="4.000" stroke="black" stroke-width="0.3"/>
+<line x1="4.000" y1="-20.000" x2="4.000" y2="-9.750" stroke="black" stroke-width="0.3"/>
+<line x1="-9.750" y1="6.000" x2="-9.750" y2="4.000" stroke="black" stroke-width="0.3"/>
+<line x1="4.000" y1="-9.750" x2="6.000" y2="-9.750" stroke="black" stroke-width="0.3"/>
+<line x1="-7.750" y1="6.000" x2="-9.750" y2="6.000" stroke="black" stroke-width="0.3"/>
+<line x1="6.000" y1="-9.750" x2="6.000" y2="-7.750" stroke="black" stroke-width="0.3"/>
+<line x1="-7.750" y1="-6.000" x2="-7.750" y2="6.000" stroke="black" stroke-width="0.3"/>
+<line x1="6.000" y1="-7.750" x2="-6.000" y2="-7.750" stroke="black" stroke-width="0.3"/>
+<line x1="-9.750" y1="-6.000" x2="-7.750" y2="-6.000" stroke="black" stroke-width="0.3"/>
+<line x1="-6.000" y1="-7.750" x2="-6.000" y2="-9.750" stroke="black" stroke-width="0.3"/>
+<line x1="-9.750" y1="-4.000" x2="-9.750" y2="-6.000" stroke="black" stroke-width="0.3"/>
+<line x1="-6.000" y1="-9.750" x2="-4.000" y2="-9.750" stroke="black" stroke-width="0.3"/>
+<line x1="-20.000" y1="-4.000" x2="-9.750" y2="-4.000" stroke="black" stroke-width="0.3"/>
+<line x1="-4.000" y1="-9.750" x2="-4.000" y2="-20.000" stroke="black" stroke-width="0.3"/>
+<line x1="-20.000" y1="-4.000" x2="-20.000" y2="-15.500" stroke="black" stroke-width="0.3"/>
+<line x1="-15.500" y1="-20.000" x2="-4.000" y2="-20.000" stroke="black" stroke-width="0.3"/>
+<line x1="-20.000" y1="-15.500" x2="-15.500" y2="-20.000" stroke="black" stroke-width="0.3"/>
+<line x1="18.000" y1="18.000" x2="11.500" y2="18.000" stroke="black" stroke-width="0.3"/>
+<line x1="11.500" y1="18.000" x2="11.500" y2="11.500" stroke="black" stroke-width="0.3"/>
+<line x1="11.500" y1="11.500" x2="18.000" y2="11.500" stroke="black" stroke-width="0.3"/>
+<line x1="18.000" y1="11.500" x2="18.000" y2="18.000" stroke="black" stroke-width="0.3"/>
+<line x1="-11.500" y1="18.000" x2="-18.000" y2="18.000" stroke="black" stroke-width="0.3"/>
+<line x1="-11.500" y1="11.500" x2="-11.500" y2="18.000" stroke="black" stroke-width="0.3"/>
+<line x1="-18.000" y1="18.000" x2="-18.000" y2="11.500" stroke="black" stroke-width="0.3"/>
+<line x1="-18.000" y1="11.500" x2="-11.500" y2="11.500" stroke="black" stroke-width="0.3"/>
+<line x1="18.000" y1="-11.500" x2="11.500" y2="-11.500" stroke="black" stroke-width="0.3"/>
+<line x1="18.000" y1="-18.000" x2="18.000" y2="-11.500" stroke="black" stroke-width="0.3"/>
+<line x1="11.500" y1="-11.500" x2="11.500" y2="-18.000" stroke="black" stroke-width="0.3"/>
+<line x1="11.500" y1="-18.000" x2="18.000" y2="-18.000" stroke="black" stroke-width="0.3"/>
+<line x1="-3.400" y1="-0.000" x2="-3.400" y2="0.000" stroke="black" stroke-width="0.3"/>
+<line x1="-11.500" y1="-11.500" x2="-18.000" y2="-11.500" stroke="black" stroke-width="0.3"/>
+<line x1="-11.500" y1="-18.000" x2="-11.500" y2="-11.500" stroke="black" stroke-width="0.3"/>
+<line x1="-18.000" y1="-11.500" x2="-18.000" y2="-18.000" stroke="black" stroke-width="0.3"/>
+<line x1="-18.000" y1="-18.000" x2="-11.500" y2="-18.000" stroke="black" stroke-width="0.3"/>
+<text x="0" y="23" font-size="2" text-anchor="middle" fill="#555">CadQuery - parametric</text>
+</svg>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="297mm" height="210mm"
+     viewBox="0 0 297 210">
+  <defs>
+    <style>
+      .visible { stroke: black; stroke-width: 0.3; fill: none; stroke-linecap: round; }
+      .hidden  { stroke: black; stroke-width: 0.15; fill: none;
+                  stroke-dasharray: 2,1; stroke-linecap: round; }
+      .axis    { stroke: red; stroke-width: 0.15; fill: none; }
+      .section { fill: #dde; stroke: black; stroke-width: 0.3; }
+      text { font-family: Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect width="297" height="210" fill="white"/>
+  <rect x="20" y="10" width="267" height="190"
+        stroke="black" stroke-width="0.5" fill="none"/>
+  <rect x="197" y="185" width="90" height="15"
+        stroke="black" stroke-width="0.35" fill="white"/>
+  <text x="200" y="192" font-size="3.5" fill="black">Aufgabe 5: Abwicklung Zylinder r=20 h=60</text>
+  <text x="200" y="197" font-size="2.5" fill="black">GZ Sek I | CadQuery + HLR</text>
+  <rect x="50" y="40" width="113.1" height="54.0" class="visible"/>
+  <text x="106.54866776461628" y="37" font-size="3" text-anchor="middle">Mantelflaeche 125.7 x 60 mm</text>
+  <circle cx="211.1" cy="44.0" r="18.0" class="visible"/>
+  <circle cx="211.1" cy="90.0" r="18.0" class="visible"/>
+  <text x="211.1" y="23.0" font-size="2.5" text-anchor="middle">Deckel</text>
+  <text x="211.1" y="113.0" font-size="2.5" text-anchor="middle">Boden</text>
+  <text x="148" y="185" font-size="3" text-anchor="middle" fill="black">Abwicklung Zylinder r=20, h=60 (2D, kein HLR)</text>
+</svg>

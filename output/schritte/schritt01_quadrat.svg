@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 -25 50 50" width="400" height="400">
+  <rect x="-25" y="-25" width="50" height="50" fill="white"/>
+  <path d="M 20.0000,20.0000 L 20.0000,-20.0000 L -20.0000,-20.0000 L -20.0000,20.0000 L 20.0000,20.0000 Z" fill="none" stroke="red" stroke-width="0.2" fill-rule="evenodd"/>
+</svg>

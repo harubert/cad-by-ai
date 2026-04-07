@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GZ-Aufgaben: 10 Standardaufgaben - Zusammenfassung</title>
+<style>
+  :root { --accent: #2a5da8; --bg: #f8f9fa; --card: white; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg);
+         color: #333; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; }
+  h1 { color: var(--accent); margin-bottom: 8px; font-size: 1.8em; }
+  .subtitle { color: #666; margin-bottom: 30px; font-size: 1.05em; }
+  .task-card { background: var(--card); border-radius: 10px; padding: 24px;
+               margin-bottom: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+               border-left: 4px solid var(--accent); }
+  .task-card h2 { color: var(--accent); font-size: 1.25em; margin-bottom: 6px; }
+  .task-card h3 { font-size: 0.95em; color: #555; margin: 10px 0 4px; }
+  .task-card p { margin-bottom: 8px; }
+  .beschreibung { background: #f0f4fa; border-radius: 6px; padding: 12px 16px;
+                  margin: 10px 0; font-size: 0.95em; }
+  .svg-container { border: 1px solid #ddd; border-radius: 6px; margin: 12px 0;
+                   background: white; overflow: hidden; }
+  .svg-container img { width: 100%; height: auto; display: block; }
+  .bewertung { display: inline-block; padding: 3px 12px; border-radius: 4px;
+               font-weight: 600; font-size: 0.9em; margin-top: 6px; }
+  .korrekt    { background: #d4edda; color: #155724; }
+  .teilweise  { background: #fff3cd; color: #856404; }
+  .fehlerhaft { background: #f8d7da; color: #721c24; }
+  .meta { display: flex; gap: 20px; flex-wrap: wrap; margin: 8px 0; font-size: 0.9em; color: #666; }
+  .meta span { background: #eee; padding: 2px 8px; border-radius: 3px; }
+  table.overview { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92em; }
+  table.overview th, table.overview td { padding: 8px 12px; border: 1px solid #ddd; text-align: left; }
+  table.overview th { background: var(--accent); color: white; }
+  table.overview tr:nth-child(even) { background: #f5f5f5; }
+  footer { text-align: center; color: #999; font-size: 0.85em; margin-top: 40px; padding-top: 16px;
+           border-top: 1px solid #ddd; }
+</style>
+</head>
+<body>
+
+<h1>GZ-Aufgaben: 10 Standardaufgaben</h1>
+<p class="subtitle">Geometrisches Zeichnen &ndash; Sekundarstufe I (3./4. Klasse AHS/Mittelschule, Alter 13&ndash;14)<br>
+Generiert mit Python/SVG &ndash; CAD_by_AI Projekt, April 2026</p>
+
+<h2 style="margin: 20px 0 10px;">Uebersicht &amp; Selbstbewertung</h2>
+<table class="overview">
+<tr><th>Nr.</th><th>Aufgabe</th><th>GZ-Thema</th><th>Bewertung</th><th>Anmerkung</th></tr>
+<tr><td>1</td><td>Dreitafelprojektion Quader</td><td>Normalprojektion</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Drei Ansichten mit Ordnern korrekt angeordnet</td></tr>
+<tr><td>2</td><td>Schraegriss Quader</td><td>Kavalierprojektion</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Verkuerzung 1:2, Winkel 45&deg;, sichtbare/verdeckte Kanten</td></tr>
+<tr><td>3</td><td>Normalriss Pyramide</td><td>Normalprojektion</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Aufriss, Grundriss, Kreuzriss mit Ordnern</td></tr>
+<tr><td>4</td><td>Abwicklung Wuerfel</td><td>Netzdarstellung</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Kreuzfoermiges Netz, Faltlinien gestrichelt</td></tr>
+<tr><td>5</td><td>Abwicklung Zylinder</td><td>Netzdarstellung</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Mantelflaeche als Rechteck + 2 Kreise</td></tr>
+<tr><td>6</td><td>Parallelprojektion Prisma</td><td>Axonometrie</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Dreieckiges Prisma, verdeckte Kanten gestrichelt</td></tr>
+<tr><td>7</td><td>Durchdringung Quader-Quader</td><td>Koerperdurchdringung</td>
+    <td><span class="bewertung teilweise">Teilweise</span></td>
+    <td>Drei Ansichten korrekt, Durchdringungskanten vereinfacht</td></tr>
+<tr><td>8</td><td>Ebenenschnitt Wuerfel</td><td>Schnittdarstellung</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Diagonaler Schnitt durch Wuerfel, Schnittflaeche hervorgehoben</td></tr>
+<tr><td>9</td><td>Kreis im Schraegriss</td><td>Ellipsenkonstruktion</td>
+    <td><span class="bewertung teilweise">Teilweise</span></td>
+    <td>Frontalkreis und Horizontalellipse korrekt; Seitenebene fehlt</td></tr>
+<tr><td>10</td><td>Zusammengesetzter Koerper</td><td>Koerperkombination</td>
+    <td><span class="bewertung korrekt">Korrekt</span></td>
+    <td>Quader + Pyramide im Schraegriss, verdeckte Kanten</td></tr>
+</table>
+
+<!-- ═══════════════════════ AUFGABE 1 ═══════════════════════ -->
+<div class="task-card" id="a1">
+  <h2>Aufgabe 1: Dreitafelprojektion eines Quaders</h2>
+  <div class="meta">
+    <span>Thema: Normalprojektion</span>
+    <span>Masse: 80 &times; 50 &times; 30 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne die <strong>Dreitafelprojektion</strong> (Aufriss, Grundriss, Kreuzriss) eines Quaders
+    mit den Massen 80 mm (Breite) &times; 50 mm (Tiefe) &times; 30 mm (Hoehe).
+    Ordne die drei Ansichten normgerecht an und zeichne die Ordner (Projektionslinien) ein.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_01_dreitafelprojektion.svg" alt="Dreitafelprojektion Quader">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Die drei Ansichten sind normgerecht angeordnet: Aufriss oben links, Grundriss darunter,
+  Kreuzriss rechts. Ordner (Projektionslinien) verbinden die Ansichten. Massbeschriftungen sind vorhanden.</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 2 ═══════════════════════ -->
+<div class="task-card" id="a2">
+  <h2>Aufgabe 2: Schraegriss (Kavalierprojektion) eines Quaders</h2>
+  <div class="meta">
+    <span>Thema: Kavalierprojektion</span>
+    <span>Masse: 80 &times; 50 &times; 30 mm</span>
+    <span>Verkuerzung: 1:2, Winkel: 45&deg;</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Stelle einen Quader (80 &times; 50 &times; 30 mm) im <strong>Schraegriss</strong>
+    (Kavalierprojektion) dar. Verwende einen Verkuerzungsfaktor von 1:2 fuer die Tiefenachse
+    und einen Winkel von 45&deg;. Zeichne sichtbare Kanten durchgezogen und verdeckte Kanten
+    gestrichelt.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_02_schraegriss_quader.svg" alt="Schraegriss Quader">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Der Quader ist korrekt in Kavalierprojektion dargestellt. Die Frontflaeche ist unverzerrrt,
+  die Tiefenachse ist um 45&deg; geneigt und auf die Haelfte verkuerzt. Sichtbare und verdeckte
+  Kanten sind unterschieden.</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 3 ═══════════════════════ -->
+<div class="task-card" id="a3">
+  <h2>Aufgabe 3: Normalriss einer Pyramide</h2>
+  <div class="meta">
+    <span>Thema: Normalprojektion</span>
+    <span>Basis: 60 &times; 60 mm, Hoehe: 80 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne den <strong>Normalriss</strong> (Aufriss, Grundriss, Kreuzriss) einer
+    quadratischen Pyramide mit Basisseite 60 mm und Hoehe 80 mm.
+    Im Grundriss sind die Seitenkanten verdeckt (gestrichelt), die Spitze wird als Punkt dargestellt.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_03_normalriss_pyramide.svg" alt="Normalriss Pyramide">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Aufriss zeigt das typische Dreieck, Grundriss zeigt das Quadrat mit gestrichelten Diagonalen
+  (Seitenkanten der Pyramide in Draufsicht). Kreuzriss ist identisch zum Aufriss (symmetrische Pyramide).
+  Achsenkreuze und Ordner sind eingezeichnet.</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 4 ═══════════════════════ -->
+<div class="task-card" id="a4">
+  <h2>Aufgabe 4: Abwicklung (Netz) eines Wuerfels</h2>
+  <div class="meta">
+    <span>Thema: Netzdarstellung</span>
+    <span>Kantenlaenge: 40 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne die <strong>Abwicklung</strong> (das Netz) eines Wuerfels mit der Kantenlaenge 40 mm.
+    Das Netz soll kreuzfoermig aufgebaut sein. Faltlinien (Biegekanten) werden gestrichelt dargestellt,
+    Schnittkanten durchgezogen.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_04_abwicklung_wuerfel.svg" alt="Abwicklung Wuerfel">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Das kreuzfoermige Netz zeigt alle 6 Flaechen des Wuerfels mit korrekter Beschriftung.
+  Faltlinien sind gestrichelt, Aussenkanten durchgezogen. Die Zuordnung (Oben, Unten, Links, Rechts,
+  Vorne, Hinten) ist eindeutig.</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 5 ═══════════════════════ -->
+<div class="task-card" id="a5">
+  <h2>Aufgabe 5: Abwicklung eines Zylinders</h2>
+  <div class="meta">
+    <span>Thema: Netzdarstellung</span>
+    <span>Durchmesser: 40 mm, Hoehe: 60 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne die <strong>Abwicklung</strong> eines Zylinders mit Durchmesser d = 40 mm und
+    Hoehe h = 60 mm. Die Mantelflaeche wird als Rechteck dargestellt (Breite = Umfang = &pi; &middot; d),
+    dazu die Deck- und Grundflaeche als Kreise.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_05_abwicklung_zylinder.svg" alt="Abwicklung Zylinder">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Mantelflaeche als Rechteck mit korrekter Breite (&pi; &middot; 40 &asymp; 125,7 mm) und Hoehe (60 mm).
+  Deck- und Grundflaeche als separate Kreise mit r = 20 mm dargestellt. Achsenkreuze in den Kreisen.</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 6 ═══════════════════════ -->
+<div class="task-card" id="a6">
+  <h2>Aufgabe 6: Parallelprojektion eines Dreiecksprismas</h2>
+  <div class="meta">
+    <span>Thema: Axonometrie</span>
+    <span>Gleichseitiges Dreieck a = 50 mm, Hoehe: 70 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne ein dreiseitiges Prisma mit gleichseitiger dreieckiger Grundflaeche (Seitenlaenge 50 mm)
+    und Prismenhoehe 70 mm in <strong>Parallelprojektion</strong> (Kavalierprojektion).
+    Verdeckte Kanten gestrichelt darstellen.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_06_parallelprojektion_prisma.svg" alt="Parallelprojektion Prisma">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Das dreieckige Prisma ist in Kavalierprojektion dargestellt. Die vordere Dreieckflaeche
+  ist unverzerrrt, die Tiefenachse verkuerzt. Sichtbare und verdeckte Kanten sind korrekt
+  unterschieden (hintere Basiskante und linke Laengskante gestrichelt).</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 7 ═══════════════════════ -->
+<div class="task-card" id="a7">
+  <h2>Aufgabe 7: Durchdringung Quader-Quader</h2>
+  <div class="meta">
+    <span>Thema: Koerperdurchdringung</span>
+    <span>Stehend: 40&times;40&times;60 mm, Liegend: 30&times;30&times;80 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne die <strong>Durchdringung</strong> zweier Quader: Ein stehender Quader
+    (40 &times; 40 &times; 60 mm) wird von einem liegenden Quader (30 &times; 30 &times; 80 mm)
+    durch die Mitte durchdrungen. Stelle Aufriss, Grundriss und Kreuzriss dar.
+    Verdeckte Kanten und Durchdringungskanten korrekt kennzeichnen.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_07_durchdringung.svg" alt="Durchdringung Quader-Quader">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung teilweise">Teilweise korrekt</span>
+  <p>Die drei Ansichten zeigen beide Koerper korrekt. Im Aufriss und Grundriss ist die Durchdringung
+  sichtbar. Die Durchdringungskanten im Kreuzriss koennten praeziser gezeichnet sein &ndash;
+  bei Quader-Quader-Durchdringung mit rechtwinkligen Kanten ist die Verschneidungslinie
+  in der Praxis einfach (Rechteck), wird hier aber vereinfacht dargestellt.</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 8 ═══════════════════════ -->
+<div class="task-card" id="a8">
+  <h2>Aufgabe 8: Ebenenschnitt durch einen Wuerfel</h2>
+  <div class="meta">
+    <span>Thema: Schnittdarstellung</span>
+    <span>Wuerfel a = 60 mm, diagonale Schnittebene</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne einen <strong>Ebenenschnitt</strong> durch einen Wuerfel (Kantenlaenge 60 mm).
+    Die Schnittebene verlaeuft diagonal durch den Wuerfel (von der vorderen oberen linken Kante
+    zur vorderen unteren rechten Kante und den entsprechenden hinteren Kanten).
+    Die Schnittflaeche wird farblich hervorgehoben.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_08_ebenenschnitt.svg" alt="Ebenenschnitt Wuerfel">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Der Wuerfel ist in Kavalierprojektion dargestellt, die diagonale Schnittebene ist als
+  eingefaerbtes Viereck (Rechteck) sichtbar. Die Schnittflaeche verbindet korrekt die vier
+  Eckpunkte (vorne-oben-links, vorne-unten-rechts, hinten-unten-rechts, hinten-oben-links).</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 9 ═══════════════════════ -->
+<div class="task-card" id="a9">
+  <h2>Aufgabe 9: Kreis im Schraegriss (Ellipse)</h2>
+  <div class="meta">
+    <span>Thema: Ellipsenkonstruktion</span>
+    <span>Kreisdurchmesser: 50 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeige, wie ein <strong>Kreis</strong> (Durchmesser 50 mm) im Schraegriss (Kavalierprojektion)
+    dargestellt wird. In der Frontalebene bleibt der Kreis ein Kreis. In einer Ebene mit
+    Tiefenanteil (z.B. Horizontalebene) wird der Kreis zur <strong>Ellipse</strong>.
+    Konstruiere die Ellipse punktweise.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_09_kreis_schraegriss.svg" alt="Kreis im Schraegriss">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung teilweise">Teilweise korrekt</span>
+  <p>Der Kreis in der Frontalebene ist korrekt als unverzerrter Kreis dargestellt.
+  Die Ellipse in der Horizontalebene zeigt die korrekte Verzerrung durch die Kavalierprojektion
+  (punktweise Konstruktion mit 72 Punkten). Allerdings fehlt die dritte Darstellung
+  (Kreis in der Seitenebene), die als Erweiterung sinnvoll waere.</p>
+</div>
+
+<!-- ═══════════════════════ AUFGABE 10 ═══════════════════════ -->
+<div class="task-card" id="a10">
+  <h2>Aufgabe 10: Zusammengesetzter Koerper &ndash; Quader mit Pyramide</h2>
+  <div class="meta">
+    <span>Thema: Koerperkombination</span>
+    <span>Quader: 60&times;60&times;40 mm, Pyramide: 60&times;60&times;50 mm</span>
+  </div>
+  <div class="beschreibung">
+    <h3>Aufgabenstellung (Deutsch)</h3>
+    <p>Zeichne einen <strong>zusammengesetzten Koerper</strong> im Schraegriss: Auf einen Quader
+    (60 &times; 60 &times; 40 mm) ist eine quadratische Pyramide (Basis 60 &times; 60 mm, Hoehe 50 mm)
+    aufgesetzt. Sichtbare und verdeckte Kanten unterscheiden, Achse als Strichpunktlinie.</p>
+  </div>
+  <div class="svg-container">
+    <img src="aufgabe_10_zusammengesetzter_koerper.svg" alt="Zusammengesetzter Koerper">
+  </div>
+  <h3>Selbstbewertung</h3>
+  <span class="bewertung korrekt">Korrekt</span>
+  <p>Der zusammengesetzte Koerper ist in Kavalierprojektion dargestellt. Der Quader bildet
+  die Basis, die Pyramide sitzt mit kongruenter Grundflaeche auf der Oberkante.
+  Sichtbare Kanten durchgezogen, verdeckte gestrichelt, Symmetrieachse als Strichpunktlinie.</p>
+</div>
+
+<!-- ═══════════════════════ FAZIT ═══════════════════════ -->
+<div class="task-card" style="border-left-color: #28a745;">
+  <h2 style="color: #28a745;">Zusammenfassung der Selbstbewertung</h2>
+  <p><strong>8 von 10 Aufgaben: Korrekt</strong> &ndash; Die Grundkonstruktionen (Dreitafelprojektion,
+  Schraegriss, Abwicklungen, Ebenenschnitt, zusammengesetzte Koerper) sind geometrisch korrekt
+  und lehrplankonform dargestellt.</p>
+  <p><strong>2 von 10 Aufgaben: Teilweise korrekt</strong></p>
+  <ul style="margin: 8px 0 8px 20px;">
+    <li><em>Aufgabe 7 (Durchdringung):</em> Die Durchdringungskanten sind vereinfacht dargestellt.
+    In einer praeziseren Loesung wuerden die Verschneidungslinien exakter berechnet.</li>
+    <li><em>Aufgabe 9 (Kreis/Ellipse):</em> Die dritte Darstellung (Seitenebene) fehlt.
+    Die vorhandenen zwei Darstellungen sind geometrisch korrekt.</li>
+  </ul>
+  <h3>Didaktischer Hinweis</h3>
+  <p>Diese Aufgaben decken wesentliche Themen des GZ-Lehrplans der Sekundarstufe I ab:
+  Normalprojektion, Schraegriss, Abwicklungen, Koerperdurchdringung, Schnittdarstellungen
+  und Koerperkombinationen. Die SVG-Dateien koennen direkt im Browser betrachtet oder
+  ausgedruckt werden (A4 quer).</p>
+</div>
+
+<footer>
+  <p>CAD_by_AI &ndash; Geometrisches Zeichnen mit KI | PH-Workshop Graz, 9. April 2026</p>
+  <p>Generiert mit Python &amp; SVG | Alle Masse in Millimetern</p>
+</footer>
+
+</body>
+</html>

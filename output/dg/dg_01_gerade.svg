@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="297mm" height="210mm"
+     font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>
+      .construction { stroke: #aaa; stroke-width: 0.15; fill: none; }
+      .result { stroke: #000; stroke-width: 0.5; fill: none; }
+      .result-fill { stroke: #000; stroke-width: 0.5; }
+      .hidden { stroke: #000; stroke-width: 0.4; fill: none; stroke-dasharray: 2,1; }
+      .center { stroke: #d00; stroke-width: 0.2; fill: none; stroke-dasharray: 4,1,1,1; }
+      .dim { stroke: #00a; stroke-width: 0.15; fill: none; }
+      .label { font-size: 3px; fill: #000; }
+      .label-sm { font-size: 2.2px; fill: #444; }
+      .title { font-size: 3.5px; fill: #000; font-weight: bold; }
+      .frame { stroke: #000; stroke-width: 0.5; fill: none; }
+      .titleblock { stroke: #000; stroke-width: 0.3; fill: none; }
+      .axis { stroke: #d00; stroke-width: 0.25; fill: none; stroke-dasharray: 6,1,1,1; }
+      .ground { stroke: #070; stroke-width: 0.3; fill: none; }
+      .shadow-fill { fill: #ccc; stroke: none; opacity: 0.5; }
+      .shadow-line { stroke: #555; stroke-width: 0.4; fill: none; }
+      .blue { stroke: #0055cc; stroke-width: 0.4; fill: none; }
+      .red { stroke: #cc0000; stroke-width: 0.4; fill: none; }
+      .green { stroke: #007700; stroke-width: 0.4; fill: none; }
+    </style>
+  </defs>
+  <!-- Drawing frame: left 20mm, others 10mm -->
+  <rect x="20" y="10" width="267" height="190" class="frame"/>
+  <!-- Title block -->
+  <rect x="197" y="185" width="90" height="15" class="titleblock"/>
+  <line x1="197" y1="192" x2="287" y2="192" class="titleblock"/>
+  <line x1="242" y1="185" x2="242" y2="200" class="titleblock"/>
+  <text x="199" y="190" class="label-sm">CAD-AI / DG-01</text>
+  <text x="244" y="190" class="label-sm">Gerade in allg. Lage</text>
+  <text x="199" y="198" class="label-sm">Darstellende Geometrie</text>
+  <text x="244" y="198" class="label-sm">A4 quer | 1:1</text>
+<line x1="20" y1="105.00" x2="287" y2="105.00" stroke="#C00" stroke-width="0.3"/>
+<text x="26" y="103.50" class="label-sm">x₁,₂</text>
+<text x="40" y="113.00" class="label">Grundriss (π₁)</text>
+<text x="40" y="100.00" class="label">Aufriss (π₂)</text>
+<line x1="84.00" y1="141.00" x2="84.00" y2="57.00" class="construction"/>
+<line x1="144.00" y1="117.00" x2="144.00" y2="33.00" class="construction"/>
+<line x1="84.00" y1="141.00" x2="144.00" y2="117.00" class="result"/>
+<circle cx="84.00" cy="141.00" r="0.6" fill="#000"/>
+<text x="85.50" y="144.00" class="label">A'</text>
+<circle cx="144.00" cy="117.00" r="0.6" fill="#000"/>
+<text x="145.50" y="120.00" class="label">B'</text>
+<line x1="84.00" y1="57.00" x2="144.00" y2="33.00" class="result"/>
+<circle cx="84.00" cy="57.00" r="0.6" fill="#000"/>
+<text x="85.50" y="55.50" class="label">A"</text>
+<circle cx="144.00" cy="33.00" r="0.6" fill="#000"/>
+<text x="145.50" y="31.50" class="label">B"</text>
+<text x="200.00" y="135.00" class="title">Wahre Länge</text>
+<line x1="200.00" y1="155.00" x2="264.62" y2="155.00" class="construction"/>
+<line x1="264.62" y1="155.00" x2="264.62" y2="131.00" class="construction"/>
+<line x1="200.00" y1="155.00" x2="264.62" y2="131.00" class="blue"/>
+<text x="224.31" y="143.00" class="label" fill="#0055cc">wL = 57.4</text>
+<circle cx="200.00" cy="155.00" r="0.6" fill="#000"/>
+<text x="201.00" y="158.00" class="label">A</text>
+<circle cx="264.62" cy="131.00" r="0.6" fill="#000"/>
+<text x="266.12" y="129.50" class="label">B_w</text>
+<text x="30" y="20" class="title">Aufgabe 1: Gerade in allgemeiner Lage</text>
+<text x="30" y="25" class="label-sm">A(20,30,40)  B(70,10,60)</text>
+<text x="30" y="29" class="label-sm">Wahre Länge = √(Δx²+Δy²+Δz²) = 57.45</text>
+</svg>

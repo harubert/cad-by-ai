@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="297mm" height="210mm"
+     viewBox="0 0 297 210">
+  <defs>
+    <style>
+      .visible { stroke: black; stroke-width: 0.3; fill: none; stroke-linecap: round; }
+      .hidden  { stroke: black; stroke-width: 0.15; fill: none;
+                  stroke-dasharray: 2,1; stroke-linecap: round; }
+      .axis    { stroke: red; stroke-width: 0.15; fill: none; }
+      .section { fill: #dde; stroke: black; stroke-width: 0.3; }
+      text { font-family: Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect width="297" height="210" fill="white"/>
+  <rect x="20" y="10" width="267" height="190"
+        stroke="black" stroke-width="0.5" fill="none"/>
+  <rect x="197" y="185" width="90" height="15"
+        stroke="black" stroke-width="0.35" fill="white"/>
+  <text x="200" y="192" font-size="3.5" fill="black">Aufgabe 6: Parallelprojektion Dreiecksprisma</text>
+  <text x="200" y="197" font-size="2.5" fill="black">GZ Sek I | CadQuery + HLR</text>
+  <path d="M173.98,105.00 L173.98,165.34" class="visible"/>
+  <path d="M135.01,98.53 L135.01,158.88" class="visible"/>
+  <path d="M173.98,105.00 L135.01,98.53" class="visible"/>
+  <path d="M173.98,165.34 L135.01,158.88" class="visible"/>
+  <path d="M135.01,158.88 L135.01,171.81" class="visible"/>
+  <path d="M135.01,171.81 L173.98,165.34" class="visible"/>
+  <path d="M135.01,111.47 L135.01,171.81" class="hidden"/>
+  <path d="M135.01,98.53 L135.01,111.47" class="hidden"/>
+  <path d="M135.01,111.47 L173.98,105.00" class="hidden"/>
+  <line x1="40.0" y1="180.0" x2="55.0" y2="180.0" class="axis" marker-end="none"/>
+  <line x1="40.0" y1="180.0" x2="40.0" y2="165.0" class="axis"/>
+  <text x="56.0" y="181.0" font-size="2.5" fill="red">x</text>
+  <text x="41.0" y="164.0" font-size="2.5" fill="red">z</text>
+</svg>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Schrägriss-Konstruktion &mdash; Protokoll</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.6; }
+  h1 { border-bottom: 3px solid #333; }
+  h2 { color: #444; margin-top: 2em; border-left: 4px solid #2196F3; padding-left: 0.5em; }
+  .step { margin: 1em 0 2em 0; padding: 1em; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+  .step-img { text-align: center; margin: 1em 0; }
+  .step-img img { max-width: 600px; border: 1px solid #ddd; cursor: pointer; }
+  .insight { background: #F3E5F5; border: 1px solid #CE93D8; border-radius: 8px; padding: 1em; margin: 1em 0; }
+  .insight h3 { color: #7B1FA2; margin-top: 0; }
+  .lightbox-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(255,255,255,0.97); z-index:1000; cursor:pointer; align-items:center; justify-content:center; }
+  .lightbox-overlay.active { display:flex; }
+  .lightbox-overlay img { max-width:95vw; max-height:95vh; background:white; }
+  img { cursor:pointer; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', function() { overlay.classList.remove('active'); overlay.innerHTML = ''; });
+  document.querySelectorAll('img').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (overlay.classList.contains('active')) return;
+      var img = document.createElement('img');
+      img.src = el.src; img.style.maxWidth='95vw'; img.style.maxHeight='95vh';
+      img.addEventListener('click', function() { overlay.classList.remove('active'); overlay.innerHTML=''; });
+      overlay.innerHTML=''; overlay.appendChild(img); overlay.classList.add('active');
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<h1>Schrägriss des Alu-Profils 40&times;40 &mdash; Konstruktionsprotokoll</h1>
+<p>Kavalierprojektion, 30&deg;, Verkürzung 0.5. Schrittweiser Aufbau der Verbindungskanten.</p>
+
+<h2>1. Ausgangslage: Vorder- und Rückseite</h2>
+<div class="step">
+<p>Nur die beiden Schnittflächen (Profil-Querschnitt vorn und hinten).
+Erster Versuch mit 45&deg; und 966 Verbindungslinien &rarr; unlesbares Chaos.
+Zurückgesetzt, Winkel auf 30&deg; geändert.</p>
+</div>
+
+<h2>2. Umhüllende (Silhouettenlinien)</h2>
+<div class="step">
+<p>Die äußersten sichtbaren Verbindungslinien liegen an den <strong>Tangentenpunkten
+der R4.5-Rundung</strong> in 30&deg;-Blickrichtung.</p>
+<ul>
+  <li><strong>H</strong> (links oben): Silhouettenpunkt auf R4.5, durchgezogen (sichtbar)</li>
+  <li><strong>H'</strong> (rechts unten): gespiegelt, gestrichelt (verdeckt)</li>
+</ul>
+</div>
+
+<h2>3. Nut-Eintrittskanten</h2>
+<div class="step">
+<p>8 Kanten an den Nut-Öffnungen (je 2 pro Nut). Oben+rechts sichtbar, unten+links verdeckt.</p>
+<p><strong>Korrektur:</strong> Die Kanten beginnen nicht am alten Eckpunkt (4, -20), sondern am
+<strong>R2-Tangentenpunkt</strong> (4, -18), weil die R2-Rundung die Ecke ersetzt.</p>
+</div>
+
+<h2>4. Gerade Außenstrecken</h2>
+<div class="step">
+<p>Auf der Hinterseite: gerade Strecken von R4.5-Ende bis R2-Tangentenpunkt.
+Oben+rechts durchgezogen, unten+links gestrichelt.</p>
+</div>
+
+<h2>5. R2-Silhouettenpunkte und Zylinderflächentangenten</h2>
+<div class="step">
+<p>Die R2-Rundung bei B ist eine <strong>Zylinderfläche</strong> (kein Kantenverlauf).
+Die Silhouettenlinie dieser Fläche beginnt am Tangentenpunkt, wo die
+Blickrichtung (30&deg;) den R2-Kreis tangiert.</p>
+<ul>
+  <li><strong>U</strong>: Tangentenpunkt auf R2 bei B (Hinterseite) &mdash; R2-Bogen von U zur oberen Kante</li>
+  <li>Berechnung: Mittelpunkt + R &middot; (&minus;sin 30&deg;, &minus;cos 30&deg;)</li>
+</ul>
+</div>
+
+<h2>6. Hinterkanten-Bögen</h2>
+<div class="step">
+<p>Auf der Hinterseite sichtbar:</p>
+<ul>
+  <li>R4.5-Bogen oben-rechts (Viertelkreis)</li>
+  <li>R4.5-Bogen bei H &rarr; obere Kante</li>
+  <li>R4.5-Bogen bei H' &rarr; rechte Kante (durchgezogen) und &rarr; untere Kante (gestrichelt)</li>
+  <li>R2-Bogen bei U &rarr; obere Kante</li>
+</ul>
+</div>
+
+<h2>7. Silhouettenlinien bei L und V</h2>
+<div class="step">
+<p>An den linken (L) und rechten (V) Nut-Eintrittskanten:</p>
+<ul>
+  <li>Silhouettenpunkt auf dem R2-Bogen (30&deg;-Tangente)</li>
+  <li><strong>Durchgezogen</strong> vom Tangentenpunkt bis zur Profilkante (Vorderfläche)</li>
+  <li><strong>Gestrichelt</strong> ab der Profilkante nach hinten (verdeckt)</li>
+  <li>R2-Bogen vom Silhouettenpunkt zur Außenkante</li>
+</ul>
+</div>
+
+<div class="insight">
+<h3>Methodische Erkenntnis</h3>
+<p>Der Schrägriss eines komplexen Profils erfordert für <strong>jede Zylinderfläche</strong>
+(Rundung) eine Silhouettenanalyse: Wo tangiert die Blickrichtung den Kreisbogen?
+Dieser Tangentenpunkt bestimmt, wo die Silhouettenlinie beginnt und ob/wo sie
+sichtbar oder verdeckt ist.</p>
+<p>Die KI berechnet dies analytisch (Vektorrechnung), ein Zeichner konstruiert es
+mit Lot auf die Blickrichtung vom Kreismittelpunkt. Das Ergebnis ist identisch.</p>
+</div>
+
+<h2>8. Scheitern am manuellen Ansatz</h2>
+<div class="step">
+<p>Nach ca. 15 Iterationen (H, H', Umhüllende, Nut-Eintrittskanten, B-Tangentenpunkte,
+R2-Bögen, L-Silhouette, V-Korrektur, X-Schnittpunkt...) wurde klar:
+<strong>der manuelle Kante-für-Kante-Ansatz ist bei diesem Profil nicht praktikabel.</strong></p>
+
+<p>Das Problem: jede R2- und R4.5-Rundung erzeugt eine Zylinderfläche.
+Für jede Zylinderfläche muss:</p>
+<ul>
+  <li>Der Silhouetten-Tangentenpunkt in 30°-Blickrichtung berechnet werden</li>
+  <li>Ein R-Bogen auf der Hinterseite gezeichnet werden</li>
+  <li>Die Sichtbarkeit bestimmt werden (durchgezogen/gestrichelt)</li>
+  <li>Der Schnittpunkt mit der Vorderfläche gefunden werden</li>
+</ul>
+
+<p>Bei 8 Nuten × je 2 R2-Rundungen + 4 R4.5-Ecken + innere Hinterschnitt-Bögen
+ergeben sich <strong>über 40 Silhouettenlinien</strong>, die alle einzeln berechnet und
+auf Sichtbarkeit geprüft werden müssen.</p>
+
+<p><strong>Der Mensch fragte:</strong> &bdquo;Hast du irgendeine Idee, wie wir das automatisiert
+schneller herkriegen?&ldquo;</p>
+</div>
+
+<div class="insight">
+<h3>Erkenntnis: Grenzen des 2D-Ansatzes</h3>
+<p>Der SVG/Shapely-Ansatz (2D-Geometrie + manuelle Projektion) stößt beim Schrägriss
+an seine Grenzen. Was fehlt ist eine <strong>automatische Sichtbarkeitsanalyse</strong>
+(Hidden Line Removal), die nur ein echtes 3D-CAD-System leisten kann.</p>
+<p><strong>Lösungsansatz:</strong> CadQuery (Python-basiertes 3D-CAD mit OpenCASCADE-Kernel)
+kann aus einem 3D-Solid automatisch Projektionen mit korrekter Sichtbarkeit erzeugen.
+Installation und Test laufen.</p>
+</div>
+
+<h2>9. Neustart mit CadQuery (3D-CAD + automatisches HLR)</h2>
+<div class="step">
+<p><strong>Ansatz:</strong> Statt manuell Kante für Kante aufzubauen, wird das Profil als
+echtes 3D-Solid in CadQuery (OpenCASCADE-Kernel) modelliert und dann per
+<strong>Hidden Line Removal (HLR)</strong> automatisch projiziert.</p>
+<p>CadQuery 2.7.0 installiert. HLR-Module (HLRBRep_Algo, HLRAlgo_Projector) verfügbar.
+Die alte manuelle Version bleibt als <code>aufgabe03_risse.py</code> erhalten.
+Der neue Versuch wird als <code>aufgabe03_cadquery.py</code> angelegt.</p>
+
+<p><strong>Aufgabe 06: Tool-Vergleich</strong> &mdash; Drei CAD-Tools parallel getestet:</p>
+<table style="width:100%; border-collapse:collapse; margin:1em 0;">
+<tr style="background:#f0f0f0;"><th style="border:1px solid #ddd; padding:0.5em;">Tool</th><th style="border:1px solid #ddd; padding:0.5em;">Kernel</th><th style="border:1px solid #ddd; padding:0.5em;">HLR</th><th style="border:1px solid #ddd; padding:0.5em;">Status</th></tr>
+<tr><td style="border:1px solid #ddd; padding:0.5em;">CadQuery 2.7</td><td style="border:1px solid #ddd; padding:0.5em;">OpenCASCADE</td><td style="border:1px solid #ddd; padding:0.5em;">✓</td><td style="border:1px solid #ddd; padding:0.5em;">STEP OK, SVG-Export problematisch</td></tr>
+<tr><td style="border:1px solid #ddd; padding:0.5em;">build123d</td><td style="border:1px solid #ddd; padding:0.5em;">OpenCASCADE</td><td style="border:1px solid #ddd; padding:0.5em;">✓</td><td style="border:1px solid #ddd; padding:0.5em;">Installiert, API-Syntax anders</td></tr>
+<tr><td style="border:1px solid #ddd; padding:0.5em;">SolidPython2</td><td style="border:1px solid #ddd; padding:0.5em;">OpenSCAD (CSG)</td><td style="border:1px solid #ddd; padding:0.5em;">✗</td><td style="border:1px solid #ddd; padding:0.5em;">SCAD OK, kein HLR</td></tr>
+</table>
+</div>
+
+<h2>10. CadQuery Versuch 1: FAIL (SVG-Export)</h2>
+<div class="step">
+<p><strong>FAIL:</strong> Die HLR-Berechnung selbst funktioniert, aber die SVG-Ausgabe ist fehlerhaft.
+Die Kanten werden nicht korrekt als SVG-Pfade exportiert &mdash; &bdquo;eine unterhaltsame Katastrophe&ldquo;.</p>
+<div class="step-img"><img src="aufgabe03_schraegriss_cadquery.svg" width="400">
+<figcaption>FAIL: CadQuery HLR Versuch 1 &mdash; Projektion OK, SVG-Export kaputt</figcaption></div>
+</div>
+
+<h2>11. CadQuery Versuch 2: Sauberer SVG-Export</h2>
+<div class="step">
+<p>Neuer Ansatz: Zuerst nur das Profil als sauberes CadQuery-SVG exportieren (Querschnitt).
+Dann schrittweise die Extrusion und HLR-Projektion hinzufügen.</p>
+<p>Das Profil wurde parametrisch aufgebaut (40×40, R4.5, T-Nuten, Bohrung, Pockets),
+auf 100mm extrudiert, und per HLR aus einer Blickrichtung projiziert,
+die einer Kavalierprojektion bei 30° entspricht.</p>
+</div>
+
+<div class="step-img">
+<p><strong>CadQuery (automatisch):</strong></p>
+<img src="aufgabe03_schraegriss_cadquery.svg" width="600">
+</div>
+
+<div class="step-img">
+<p><strong>Manuell (unvollständig):</strong></p>
+<img src="aufgabe03_schraegriss.svg" width="600">
+</div>
+
+<div class="insight">
+<h3>Fazit: Werkzeugwahl entscheidet</h3>
+<p>Der manuelle Ansatz (SVG + Shapely + Vektorrechnung) hat 15+ Iterationen gebraucht
+und war bei der oberen Seite angekommen. Allein für die Sichtbarkeitsanalyse der
+Zylinderflächen-Silhouetten brauchte jede Rundung 3-4 Korrekturschritte.</p>
+<p>CadQuery mit OpenCASCADE HLR löst dasselbe Problem <strong>in einem Befehl</strong>.
+Die Lektion: <strong>Das richtige Werkzeug für die Aufgabe wählen</strong> ist wichtiger
+als jedes Detail perfekt manuell zu konstruieren.</p>
+<p>Für das Referat: KI + richtiges 3D-Tool = mächtige Kombination.
+KI + falsches Tool = mühsam und fehleranfällig.</p>
+</div>
+
+</body>
+</html>

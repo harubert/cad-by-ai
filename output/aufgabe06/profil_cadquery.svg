@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-27.5 -27.5 55.0 55.0" width="400" height="400">
+<rect x="-27.5" y="-27.5" width="55.0" height="55.0" fill="white"/>
+<path d="M 19.50,22.50 L 5.00,22.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 19.50,22.50 L 22.50,19.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 22.50,5.00 L 22.50,19.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 22.50,5.00 L 10.00,5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 10.00,5.00 L 10.00,8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 10.00,8.25 L 8.25,8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 8.25,8.25 L 8.25,10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 8.25,10.00 L 5.00,10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 5.00,10.00 L 5.00,22.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -5.00,10.00 L -8.25,10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -8.25,10.00 L -8.25,8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -8.25,8.25 L -10.00,8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -10.00,8.25 L -10.00,5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -10.00,5.00 L -22.50,5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -22.50,19.50 L -22.50,5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -19.50,22.50 L -22.50,19.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -5.00,22.50 L -19.50,22.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -5.00,22.50 L -5.00,10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -8.00,8.00 L 8.00,8.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -8.00,-8.00 L -8.00,8.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 8.00,8.00 L 8.00,-8.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 8.00,-8.00 L -8.00,-8.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -3.40,-0.00 L -3.40,0.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -10.00,-5.00 L -10.00,-8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -10.00,-8.25 L -8.25,-8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -8.25,-8.25 L -8.25,-10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -8.25,-10.00 L -5.00,-10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -5.00,-10.00 L -5.00,-22.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -19.50,-22.50 L -5.00,-22.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -22.50,-19.50 L -19.50,-22.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -22.50,-5.00 L -22.50,-19.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M -22.50,-5.00 L -10.00,-5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 10.00,-5.00 L 22.50,-5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 22.50,-19.50 L 22.50,-5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 19.50,-22.50 L 22.50,-19.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 5.00,-22.50 L 19.50,-22.50" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 5.00,-22.50 L 5.00,-10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 5.00,-10.00 L 8.25,-10.00" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 8.25,-10.00 L 8.25,-8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 8.25,-8.25 L 10.00,-8.25" fill="none" stroke="black" stroke-width="0.3"/>
+<path d="M 10.00,-8.25 L 10.00,-5.00" fill="none" stroke="black" stroke-width="0.3"/>
+<text x="0" y="26.5" font-size="3" text-anchor="middle" fill="#555">CadQuery - GN 10b-S 45x45</text>
+</svg>

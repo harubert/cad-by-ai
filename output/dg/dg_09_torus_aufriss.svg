@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="297mm" height="210mm"
+     font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>
+      .construction { stroke: #aaa; stroke-width: 0.15; fill: none; }
+      .result { stroke: #000; stroke-width: 0.5; fill: none; }
+      .result-fill { stroke: #000; stroke-width: 0.5; }
+      .hidden { stroke: #000; stroke-width: 0.4; fill: none; stroke-dasharray: 2,1; }
+      .center { stroke: #d00; stroke-width: 0.2; fill: none; stroke-dasharray: 4,1,1,1; }
+      .dim { stroke: #00a; stroke-width: 0.15; fill: none; }
+      .label { font-size: 3px; fill: #000; }
+      .label-sm { font-size: 2.2px; fill: #444; }
+      .title { font-size: 3.5px; fill: #000; font-weight: bold; }
+      .frame { stroke: #000; stroke-width: 0.5; fill: none; }
+      .titleblock { stroke: #000; stroke-width: 0.3; fill: none; }
+      .axis { stroke: #d00; stroke-width: 0.25; fill: none; stroke-dasharray: 6,1,1,1; }
+      .ground { stroke: #070; stroke-width: 0.3; fill: none; }
+      .shadow-fill { fill: #ccc; stroke: none; opacity: 0.5; }
+      .shadow-line { stroke: #555; stroke-width: 0.4; fill: none; }
+      .blue { stroke: #0055cc; stroke-width: 0.4; fill: none; }
+      .red { stroke: #cc0000; stroke-width: 0.4; fill: none; }
+      .green { stroke: #007700; stroke-width: 0.4; fill: none; }
+    </style>
+  </defs>
+  <!-- Drawing frame: left 20mm, others 10mm -->
+  <rect x="20" y="10" width="267" height="190" class="frame"/>
+  <!-- Title block -->
+  <rect x="197" y="185" width="90" height="15" class="titleblock"/>
+  <line x1="197" y1="192" x2="287" y2="192" class="titleblock"/>
+  <line x1="242" y1="185" x2="242" y2="200" class="titleblock"/>
+  <text x="199" y="190" class="label-sm">CAD-AI / DG-09</text>
+  <text x="244" y="190" class="label-sm">Torus im Aufriss</text>
+  <text x="199" y="198" class="label-sm">Darstellende Geometrie</text>
+  <text x="244" y="198" class="label-sm">A4 quer | 1:1</text>
+<path d="M 208.00 85.00 A 20.00 20.00 0 0 1 208.00 125.00" class="result"/>
+<path d="M 208.00 125.00 A 20.00 20.00 0 0 1 208.00 85.00" class="hidden"/>
+<path d="M 88.00 85.00 A 20.00 20.00 0 0 0 88.00 125.00" class="result"/>
+<path d="M 88.00 125.00 A 20.00 20.00 0 0 0 88.00 85.00" class="hidden"/>
+<line x1="88.00" y1="85.00" x2="208.00" y2="85.00" class="result"/>
+<line x1="88.00" y1="125.00" x2="208.00" y2="125.00" class="result"/>
+<line x1="148.00" y1="70.00" x2="148.00" y2="140.00" class="center"/>
+<text x="150.00" y="73.00" class="label" fill="#d00">Rotationsachse</text>
+<line x1="58.00" y1="105.00" x2="238.00" y2="105.00" class="center"/>
+<line x1="148.00" y1="133.00" x2="208.00" y2="133.00" class="dim"/>
+<text x="175.00" y="137.00" class="label-sm" fill="#00a">R = 30</text>
+<line x1="208.00" y1="105.00" x2="208.00" y2="85.00" class="dim"/>
+<text x="210.00" y="95.00" class="label-sm" fill="#00a">r = 10</text>
+<text x="30" y="20" class="title">Aufgabe 9: Rotationsfläche – Torus im Aufriss</text>
+<text x="30" y="25" class="label-sm">Torus: R=30 (Hauptradius), r=10 (Rohrradius)</text>
+<text x="30" y="29" class="label-sm">Aufriss: Blick entlang y-Achse auf x-z-Ebene</text>
+<text x="30" y="33" class="label-sm">Kontur: 2 Meridiankreise + 2 Tangentiallinien</text>
+</svg>

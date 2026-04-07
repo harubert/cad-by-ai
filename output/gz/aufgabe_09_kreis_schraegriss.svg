@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="297mm" height="210mm"
+     viewBox="0 0 297 210">
+  <defs>
+    <style>
+      .visible { stroke: black; stroke-width: 0.25; fill: none; }
+      .hidden  { stroke: black; stroke-width: 0.1; fill: none;
+                  stroke-dasharray: 2,1; }
+      .center  { stroke: red;   stroke-width: 0.1; fill: none;
+                  stroke-dasharray: 4,1,1,1; }
+      .dim     { stroke: black; stroke-width: 0.1; fill: none; }
+      .proj    { stroke: #888;  stroke-width: 0.1; fill: none; }
+      .fill-section { fill: #dde; stroke: black; stroke-width: 0.25; }
+      .fill-light   { fill: #f5f5f5; stroke: black; stroke-width: 0.25; }
+      text { font-family: Arial, sans-serif; }
+    </style>
+  </defs>
+  <!-- Drawing frame: 20mm left, 10mm other sides -->
+  <rect x="20" y="10" width="267" height="190"
+        stroke="black" stroke-width="0.5" fill="none"/>
+  <!-- Title block -->
+  <rect x="197" y="185" width="90" height="15"
+        stroke="black" stroke-width="0.35" fill="white"/>
+  <text x="200" y="193" font-size="3.5" fill="black">Aufgabe 9: Kreis im Schraegriss (Ellipse)</text>
+  <text x="200" y="198" font-size="2.5" fill="black">GZ Sekundarstufe I | CAD_by_AI</text>
+  <circle cx="70.00" cy="100.00" r="25.00" class="visible"/>
+  <line x1="42.00" y1="100.00" x2="98.00" y2="100.00" class="center"/>
+  <line x1="70.00" y1="72.00" x2="70.00" y2="128.00" class="center"/>
+  <text x="70.00" y="69.00" font-size="3" text-anchor="middle" fill="black">Kreis in Frontalebene</text>
+  <text x="70.00" y="73.00" font-size="2.5" text-anchor="middle" fill="#555">(bleibt Kreis)</text>
+  <polygon points="205.00,100.00 205.68,99.23 206.16,98.47 206.44,97.71 206.52,96.98 206.39,96.26 206.07,95.58 205.55,94.93 204.83,94.32 203.93,93.75 202.84,93.23 201.58,92.76 200.15,92.35 198.58,91.99 196.86,91.69 195.01,91.46 193.05,91.30 190.98,91.19 188.84,91.16 186.63,91.19 184.36,91.30 182.07,91.46 179.76,91.69 177.45,91.99 175.15,92.35 172.90,92.76 170.70,93.23 168.57,93.75 166.53,94.32 164.59,94.93 162.77,95.58 161.08,96.26 159.53,96.98 158.14,97.71 156.91,98.47 155.87,99.23 155.00,100.00 154.32,100.77 153.84,101.53 153.56,102.29 153.48,103.02 153.61,103.74 153.93,104.42 154.45,105.07 155.17,105.68 156.07,106.25 157.16,106.77 158.42,107.24 159.85,107.65 161.42,108.01 163.14,108.31 164.99,108.54 166.95,108.70 169.02,108.81 171.16,108.84 173.37,108.81 175.64,108.70 177.93,108.54 180.24,108.31 182.55,108.01 184.85,107.65 187.10,107.24 189.30,106.77 191.43,106.25 193.47,105.68 195.41,105.07 197.23,104.42 198.92,103.74 200.47,103.02 201.86,102.29 203.09,101.53 204.13,100.77" class="visible"/>
+  <line x1="150.00" y1="100.00" x2="215.00" y2="100.00" class="center"/>
+  <line x1="188.84" y1="86.16" x2="171.16" y2="113.84" class="center"/>
+  <text x="180.00" y="69.00" font-size="3" text-anchor="middle" fill="black">Kreis in Horizontalebene</text>
+  <text x="180.00" y="73.00" font-size="2.5" text-anchor="middle" fill="#555">(wird zur Ellipse)</text>
+  <text x="153.00" y="155.00" font-size="3" text-anchor="middle" fill="#555">Kreisdurchmesser d = 50 mm</text>
+  <text x="153.00" y="160.00" font-size="3" text-anchor="middle" fill="#555">Kavalierprojektion: Verkürzung 1:2, Winkel 45°</text>
+  <text x="153.00" y="30.00" font-size="5" text-anchor="middle" fill="black">Kreis im Schraegriss</text>
+</svg>

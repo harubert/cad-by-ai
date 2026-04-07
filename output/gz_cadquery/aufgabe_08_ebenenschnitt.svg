@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="297mm" height="210mm"
+     viewBox="0 0 297 210">
+  <defs>
+    <style>
+      .visible { stroke: black; stroke-width: 0.3; fill: none; stroke-linecap: round; }
+      .hidden  { stroke: black; stroke-width: 0.15; fill: none;
+                  stroke-dasharray: 2,1; stroke-linecap: round; }
+      .axis    { stroke: red; stroke-width: 0.15; fill: none; }
+      .section { fill: #dde; stroke: black; stroke-width: 0.3; }
+      text { font-family: Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect width="297" height="210" fill="white"/>
+  <rect x="20" y="10" width="267" height="190"
+        stroke="black" stroke-width="0.5" fill="none"/>
+  <rect x="197" y="185" width="90" height="15"
+        stroke="black" stroke-width="0.35" fill="white"/>
+  <text x="200" y="192" font-size="3.5" fill="black">Aufgabe 8: Ebenenschnitt Wuerfel 40mm</text>
+  <text x="200" y="197" font-size="2.5" fill="black">GZ Sek I | CadQuery + HLR</text>
+  <path d="M147.32,78.70 L147.32,116.46" class="visible"/>
+  <path d="M147.32,116.46 L127.32,127.90" class="visible"/>
+  <path d="M147.32,116.46 L92.68,121.30" class="visible"/>
+  <path d="M92.68,83.54 L92.68,121.30" class="visible"/>
+  <path d="M147.32,78.70 L92.68,83.54" class="visible"/>
+  <path d="M127.32,127.90 L92.68,121.30" class="visible"/>
+  <path d="M127.32,90.15 L127.32,127.90" class="hidden"/>
+  <path d="M147.32,78.70 L127.32,90.15" class="hidden"/>
+  <path d="M127.32,90.15 L92.68,83.54" class="hidden"/>
+  <path d="M147.32,78.70 L112.68,72.10" stroke="blue" stroke-width="0.4" fill="none"/>
+  <path d="M112.68,72.10 L112.68,109.85" stroke="blue" stroke-width="0.4" fill="none"/>
+  <path d="M147.32,116.46 L112.68,109.85" stroke="blue" stroke-width="0.4" fill="none"/>
+  <path d="M147.32,78.70 L147.32,116.46" stroke="blue" stroke-width="0.4" fill="none"/>
+  <path d="M112.68,72.10 L92.68,83.54" stroke="blue" stroke-width="0.4" fill="none"/>
+  <path d="M112.68,109.85 L92.68,121.30" stroke="blue" stroke-width="0.4" fill="none"/>
+  <path d="M92.68,83.54 L92.68,121.30" stroke="blue" stroke-width="0.4" fill="none"/>
+  <path d="M147.32,116.46 L92.68,121.30" stroke="blue" stroke-width="0.4" fill="none"/>
+  <line x1="40.0" y1="180.0" x2="55.0" y2="180.0" class="axis" marker-end="none"/>
+  <line x1="40.0" y1="180.0" x2="40.0" y2="165.0" class="axis"/>
+  <text x="56.0" y="181.0" font-size="2.5" fill="red">x</text>
+  <text x="41.0" y="164.0" font-size="2.5" fill="red">z</text>
+  <text x="148" y="190" font-size="3" text-anchor="middle" fill="blue">Blau = Schnittflaeche</text>
+</svg>
